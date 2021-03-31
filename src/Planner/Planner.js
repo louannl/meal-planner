@@ -8,10 +8,10 @@ const Planner = () => {
   return (
     <div className="">
       <Row>
-        <Col span={20}>
+        <Col span={18}>
           <PlannerDays />
         </Col>
-        <Col span={4}>
+        <Col span={6}>
           <ShoppingList />
         </Col>
       </Row>

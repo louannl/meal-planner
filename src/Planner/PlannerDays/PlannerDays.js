@@ -69,33 +69,31 @@ const data = [
 
 const PlannerDays = () => {
   return (
-    <div className="Week">
-      <Row>
-        <List
-          grid={{
-            gutter: 16,
-            xs: 1,
-            sm: 2,
-            md: 4,
-            lg: 4,
-            xl: 4,
-            xxl: 4,
-          }}
-          dataSource={data}
-          renderItem={(day) => {
-            return (
-              <List.Item>
-                <Card title={day.day}>
-                  <Button type="primary" shape="circle">
-                    +
-                  </Button>
-                  <MealItems meals={day?.meals} />
-                </Card>
-              </List.Item>
-            );
-          }}
-        />
-      </Row>
+    <div className="week">
+      <List
+        grid={{
+          gutter: 16,
+          xs: 1,
+          sm: 2,
+          md: 4,
+          lg: 4,
+          xl: 4,
+          xxl: 4,
+        }}
+        dataSource={data}
+        renderItem={(day) => {
+          return (
+            <List.Item>
+              <Card title={day.day}>
+                <Button type="primary" shape="circle">
+                  +
+                </Button>
+                <MealItems meals={day?.meals} />
+              </Card>
+            </List.Item>
+          );
+        }}
+      />
     </div>
   );
 };
