@@ -3,26 +3,66 @@ import { Button, Card, Row, List } from 'antd';
 
 const data = [
   {
-    title: 'Monday',
+    day: 'Monday',
+    meals: [
+      {
+        name: 'Porridge',
+        note: 'made with oat milk',
+      },
+      {
+        name: 'Oreos',
+        note: 'made with oat milk',
+      },
+    ],
   },
   {
-    title: 'Tuesday',
+    day: 'Tuesday',
+    meals: [
+      {
+        name: 'Chicken and veg',
+        note: 'made with oat milk',
+      },
+    ],
   },
   {
-    title: 'Wednesday',
+    day: 'Wednesday',
+    meals: [
+      {
+        name: 'Porridge',
+        note: 'made with oat milk',
+      },
+    ],
   },
   {
-    title: 'Thursday',
+    day: 'Thursday',
+    meals: [
+      {
+        name: 'Porridge',
+        note: 'made with oat milk',
+      },
+    ],
   },
   {
-    title: 'Friday',
+    day: 'Friday',
+    meals: [
+      {
+        name: 'Porridge',
+        note: 'made with oat milk',
+      },
+    ],
   },
   {
-    title: 'Saturday',
+    day: 'Saturday',
     content: 'something something',
+    meals: [
+      {
+        name: 'Porridge',
+        note: 'made with oat milk',
+      },
+    ],
   },
   {
-    title: 'Sunday',
+    day: 'Sunday',
   },
 ];
 
@@ -42,16 +82,31 @@ const PlannerDays = () => {
               xxl: 4,
             }}
             dataSource={data}
-            renderItem={(item) => (
-              <List.Item>
-                <Card title={item.title}>
-                  <Button type="primary" shape="circle">
-                    +
-                  </Button>
-                  {item.content}
-                </Card>
-              </List.Item>
-            )}
+            renderItem={(day) => {
+              return (
+                <List.Item>
+                  <Card title={day.day}>
+                    <Button type="primary" shape="circle">
+                      +
+                    </Button>
+                    <List
+                      dataSource={day?.meals}
+                      renderItem={(meal) => {
+                        return (
+                          <List.Item key={meal?.name}>
+                            <List.Item.Meta
+                              title={<a href="/">{meal?.name}</a>}
+                              description={meal?.note}
+                            />
+                            <div>x</div>
+                          </List.Item>
+                        );
+                      }}
+                    ></List>
+                  </Card>
+                </List.Item>
+              );
+            }}
           />
         </Row>
       </div>
