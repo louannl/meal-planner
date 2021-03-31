@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Card, Row, List } from 'antd';
+import MealItems from './MealItems/MealItems';
 
 const data = [
   {
@@ -69,47 +70,32 @@ const data = [
 const PlannerDays = () => {
   return (
     <div className="Week">
-      <div className="Day">
-        <Row>
-          <List
-            grid={{
-              gutter: 16,
-              xs: 1,
-              sm: 2,
-              md: 4,
-              lg: 4,
-              xl: 4,
-              xxl: 4,
-            }}
-            dataSource={data}
-            renderItem={(day) => {
-              return (
-                <List.Item>
-                  <Card title={day.day}>
-                    <Button type="primary" shape="circle">
-                      +
-                    </Button>
-                    <List
-                      dataSource={day?.meals}
-                      renderItem={(meal) => {
-                        return (
-                          <List.Item key={meal?.name}>
-                            <List.Item.Meta
-                              title={<a href="/">{meal?.name}</a>}
-                              description={meal?.note}
-                            />
-                            <div>x</div>
-                          </List.Item>
-                        );
-                      }}
-                    ></List>
-                  </Card>
-                </List.Item>
-              );
-            }}
-          />
-        </Row>
-      </div>
+      <Row>
+        <List
+          grid={{
+            gutter: 16,
+            xs: 1,
+            sm: 2,
+            md: 4,
+            lg: 4,
+            xl: 4,
+            xxl: 4,
+          }}
+          dataSource={data}
+          renderItem={(day) => {
+            return (
+              <List.Item>
+                <Card title={day.day}>
+                  <Button type="primary" shape="circle">
+                    +
+                  </Button>
+                  <MealItems meals={day?.meals} />
+                </Card>
+              </List.Item>
+            );
+          }}
+        />
+      </Row>
     </div>
   );
 };
