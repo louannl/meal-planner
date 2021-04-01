@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import { Modal, Button, Form, Input, InputNumber, Select, Divider } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
+const layout = {
+  labelCol: { span: 8 },
+  wrapperCol: { span: 16 },
+};
+
 const MealItemModal = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [mealTagState, setMealTagState] = useState({
@@ -50,14 +55,21 @@ const MealItemModal = () => {
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <Form name="Edit_Meal_Item">
+        <Form name="Edit_Meal_Item" {...layout}>
           <Form.Item label="Day">
-            <Input />
+            <Select defaultValue="">
+              <Option value="Monday">Monday</Option>
+              <Option value="Tuesday">Tuesday</Option>
+              <Option value="Wednesday">Wednesday</Option>
+              <Option value="Thursday">Thursday</Option>
+              <Option value="Friday">Friday</Option>
+              <Option value="Saturday">Saturday</Option>
+              <Option value="Sunday">Sunday</Option>
+            </Select>
           </Form.Item>
           <Form.Item label="Meal Name">
             <Input />
           </Form.Item>
-
           <Form.Item label="Meal Tag">
             <Select
               placeholder="Custom meal tag"
@@ -93,22 +105,16 @@ const MealItemModal = () => {
               ))}
             </Select>
           </Form.Item>
-
-          <Form.Item label="Tag">
-            <Select defaultValue="Option1">
-              <Option value="Option1">Meal</Option>
-              <Option value="Option2">Snack</Option>
-              <Option value="Option3">Dessert</Option>
-            </Select>
+          <Form.Item label="Ingredient list">
+            <Input.Group compact>
+              <Input style={{ width: '50%' }} placeholder="ingredient" />
+              <InputNumber style={{ width: '30%' }} placeholder="100" />
+              <Select defaultValue="grams" style={{ width: '20%' }}>
+                <Option value="grams">g</Option>
+                <Option value="milliliters">ml</Option>
+              </Select>
+            </Input.Group>
           </Form.Item>
-          <Input.Group compact>
-            <Input style={{ width: '50%' }} placeholder="ingredient" />
-            <InputNumber />
-            <Select defaultValue="grams">
-              <Option value="grams">g</Option>
-              <Option value="milliliters">ml</Option>
-            </Select>
-          </Input.Group>
           <Form.Item label="Comment">
             <Input.TextArea />
           </Form.Item>
