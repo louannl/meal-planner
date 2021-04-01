@@ -1,6 +1,7 @@
 import React from 'react';
-import { Button, Card, Row, List } from 'antd';
+import { Card, List } from 'antd';
 import MealItems from './MealItems/MealItems';
+import MealItemModal from './MealItems/MealItemModal';
 
 const data = [
   {
@@ -84,10 +85,7 @@ const PlannerDays = () => {
         renderItem={(day) => {
           return (
             <List.Item>
-              <Card title={day.day}>
-                <Button type="primary" shape="circle">
-                  +
-                </Button>
+              <Card title={day.day} extra={<MealItemModal />}>
                 <MealItems meals={day?.meals} />
               </Card>
             </List.Item>

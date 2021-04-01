@@ -7,11 +7,11 @@ import ShoppingList from './ShoppingList/ShoppingList';
 const Planner = () => {
   return (
     <div className="">
-      <Row>
+      <Row gutter={8}>
         <Col span={18}>
           <PlannerDays />
         </Col>
-        <Col span={6}>
+        <Col span={5} offset={1}>
           <ShoppingList />
         </Col>
       </Row>
