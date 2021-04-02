@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Modal, Button, Form, Input, InputNumber, Select, Divider } from 'antd';
+import { Modal, Button, Form, Input, Select, Divider } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
+import FormIngredients from './Form/FormIngredients';
 
 const layout = {
   labelCol: { span: 8 },
@@ -105,16 +106,7 @@ const MealItemModal = () => {
               ))}
             </Select>
           </Form.Item>
-          <Form.Item label="Ingredient list">
-            <Input.Group compact>
-              <Input style={{ width: '50%' }} placeholder="ingredient" />
-              <InputNumber style={{ width: '30%' }} placeholder="100" />
-              <Select defaultValue="grams" style={{ width: '20%' }}>
-                <Option value="grams">g</Option>
-                <Option value="milliliters">ml</Option>
-              </Select>
-            </Input.Group>
-          </Form.Item>
+          <FormIngredients />
           <Form.Item label="Comment">
             <Input.TextArea />
           </Form.Item>
