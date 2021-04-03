@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Modal, Button, Form, Input, Select, Divider } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import FormIngredients from './FormIngredients';
+import FormDays from './FormDays';
 
 const layout = {
   labelCol: { span: 8 },
@@ -43,6 +44,10 @@ const AddMealModal = () => {
     });
   };
 
+  const onFinish = (values) => {
+    console.log('Received values of form:', values);
+  };
+
   const { Option } = Select;
 
   return (
@@ -55,19 +60,28 @@ const AddMealModal = () => {
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
+        footer={[
+          <Button key="back" onClick={handleCancel}>
+            Cancel
+          </Button>,
+          <Button
+            form="mealForm"
+            key="submit"
+            htmlType="submit"
+            type="primary"
+            onClick={handleOk}
+          >
+            Submit
+          </Button>,
+        ]}
       >
-        <Form name="Edit_Meal_Item" {...layout}>
-          <Form.Item label="Day">
-            <Select defaultValue="">
-              <Option value="Monday">Monday</Option>
-              <Option value="Tuesday">Tuesday</Option>
-              <Option value="Wednesday">Wednesday</Option>
-              <Option value="Thursday">Thursday</Option>
-              <Option value="Friday">Friday</Option>
-              <Option value="Saturday">Saturday</Option>
-              <Option value="Sunday">Sunday</Option>
-            </Select>
-          </Form.Item>
+        <Form
+          id="mealForm"
+          name="Edit_Meal_Item"
+          {...layout}
+          onFinish={onFinish}
+        >
+          <FormDays />
           <Form.Item label="Meal Name">
             <Input />
           </Form.Item>
@@ -86,17 +100,18 @@ const AddMealModal = () => {
                       value={mealTagState.name}
                       onChange={onNameChange}
                     />
-                    <a
+                    <Button
                       style={{
                         flex: 'none',
                         padding: '8px',
                         display: 'block',
                         cursor: 'pointer',
+                        border: 'none',
                       }}
                       onClick={addItem}
                     >
                       <PlusOutlined /> Add item
-                    </a>
+                    </Button>
                   </div>
                 </div>
               )}
