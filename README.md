@@ -1,3 +1,21 @@
+# Meal Planner
+
+## check out context api
+
+## File structure notes
+
+1. Assets: This folder contains all the media seets, such as imgaes, videos, json files etc. 
+2. Components: This folder contains all the presentational/stateless components 
+3. Container: Contains all the stateful components
+4. Hoc: Higher order components: special types of components which wrap conventional features
+5. Store: Stores global state (react-redux)
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

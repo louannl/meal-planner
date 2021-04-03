@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form, Input, Select, Divider } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
-import FormIngredients from './Form/FormIngredients';
+import FormIngredients from './FormIngredients';
 
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 16 },
 };
 
-const MealItemModal = () => {
+const AddMealModal = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [mealTagState, setMealTagState] = useState({
     items: [''],
@@ -116,4 +116,4 @@ const MealItemModal = () => {
   );
 };
 
-export default MealItemModal;
+export default AddMealModal;

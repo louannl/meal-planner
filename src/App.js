@@ -1,5 +1,5 @@
 import './App.css';
-import Planner from './Planner/Planner';
+import Planner from './components/Planner/Planner';
 
 function App() {
   return (

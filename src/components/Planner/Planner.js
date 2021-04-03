@@ -1,8 +1,8 @@
 import React from 'react';
 import { Row, Col } from 'antd';
 
-import PlannerDays from './PlannerDays/PlannerDays';
-import ShoppingList from './ShoppingList/ShoppingList';
+import PlannerDays from './PlannerDays';
+import ShoppingList from '../ShoppingList/ShoppingList';
 
 const Planner = () => {
   return (
