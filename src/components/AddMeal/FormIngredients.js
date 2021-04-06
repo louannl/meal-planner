@@ -3,6 +3,7 @@ import { Button, Form, Input, InputNumber, Select, Space } from 'antd';
 import { PlusOutlined, MinusCircleOutlined } from '@ant-design/icons';
 
 const { Option } = Select;
+const InputGroup = Input.Group;
 
 const FormIngredients = () => {
   return (
@@ -18,20 +19,37 @@ const FormIngredients = () => {
               }}
               align="baseline"
             >
-              <Form.Item
-                {...restField}
-                name={[name, 'Ingredient']}
-                fieldKey={[fieldKey, 'Ingredient']}
-                label="Ingredient list"
-              >
-                <Input.Group compact>
-                  <Input style={{ width: '50%' }} placeholder="ingredient" />
-                  <InputNumber style={{ width: '30%' }} placeholder="100" />
-                  <Select defaultValue="grams" style={{ width: '20%' }}>
-                    <Option value="grams">g</Option>
-                    <Option value="milliliters">ml</Option>
-                  </Select>
-                </Input.Group>
+              <Form.Item label="Ingredient list">
+                <InputGroup compact>
+                  <Form.Item
+                    noStyle
+                    {...restField}
+                    name={[name, 'ing_name"']}
+                    fieldKey={[fieldKey, 'ing_name"']}
+                  >
+                    <Input style={{ width: '50%' }} />
+                  </Form.Item>
+                  <Form.Item
+                    noStyle
+                    {...restField}
+                    name={[name, 'ing_amount"']}
+                    fieldKey={[fieldKey, 'ing_amount"']}
+                  >
+                    <InputNumber style={{ width: '30%' }} />
+                  </Form.Item>
+                  <Form.Item
+                    noStyle
+                    {...restField}
+                    name={[name, 'ing_amount_type"']}
+                    fieldKey={[fieldKey, 'ing_amount_type"']}
+                  >
+                    <Select style={{ width: '20%' }}>
+                      <Option value="grams">g</Option>
+                      <Option value="milliliters">ml</Option>
+                      <Option value="amount">Amo.</Option>
+                    </Select>
+                  </Form.Item>
+                </InputGroup>
               </Form.Item>
               <MinusCircleOutlined onClick={() => remove(name)} />
             </Space>

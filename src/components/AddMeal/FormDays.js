@@ -5,7 +5,7 @@ const { Option } = Select;
 
 const FormDays = () => {
   return (
-    <Form.Item label="Day">
+    <Form.Item name="day" label="Day" required>
       <Select defaultValue="">
         <Option value="Monday">Monday</Option>
         <Option value="Tuesday">Tuesday</Option>

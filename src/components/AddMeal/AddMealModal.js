@@ -48,6 +48,12 @@ const AddMealModal = () => {
     console.log('Received values of form:', values);
   };
 
+  const [requiredMark, setRequiredMarkType] = useState('optional');
+
+  const onRequiredTypeChange = ({ requiredMarkValue }) => {
+    setRequiredMarkType(requiredMarkValue);
+  };
+
   const { Option } = Select;
 
   return (
@@ -80,12 +86,26 @@ const AddMealModal = () => {
           name="Edit_Meal_Item"
           {...layout}
           onFinish={onFinish}
+          initialValues={{
+            requiredMarkValue: requiredMark,
+          }}
+          onValuesChange={onRequiredTypeChange}
+          requiredMark={requiredMark}
         >
           <FormDays />
-          <Form.Item label="Meal Name">
+          <Form.Item
+            label="Meal Name"
+            name="meal_name"
+            required
+            tooltip="This is a required field"
+          >
             <Input />
           </Form.Item>
-          <Form.Item label="Meal Tag">
+          <Form.Item
+            label="Meal Tag"
+            name="meal_tag"
+            tooltip="Create a custom meal tag to organise your meals by"
+          >
             <Select
               placeholder="Custom meal tag"
               dropdownRender={(menu) => (
@@ -122,7 +142,7 @@ const AddMealModal = () => {
             </Select>
           </Form.Item>
           <FormIngredients />
-          <Form.Item label="Comment">
+          <Form.Item label="Comment" name="comment">
             <Input.TextArea />
           </Form.Item>
         </Form>
