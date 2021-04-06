@@ -1,8 +1,15 @@
 import React from 'react';
-import { Card } from 'antd';
+import { Card, List } from 'antd';
+import ShoppingIngredients from './ShoppingIngredients';
 
-const ShoppingList = () => {
-  return <Card title="Shopping list" style={{ width: '100%' }}></Card>;
+const ShoppingList = (props) => {
+  return (
+    <List>
+      <Card title="Shopping List">
+        <ShoppingIngredients data={props.data} />
+      </Card>
+    </List>
+  );
 };
 
 export default ShoppingList;

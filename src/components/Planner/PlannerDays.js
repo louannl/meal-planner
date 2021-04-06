@@ -3,72 +3,7 @@ import { Card, List } from 'antd';
 import MealItems from './MealItems';
 import AddMealModal from '../AddMeal/AddMealModal';
 
-const data = [
-  {
-    day: 'Monday',
-    meals: [
-      {
-        name: 'Porridge',
-        note: 'made with oat milk',
-      },
-      {
-        name: 'Oreos',
-        note: 'made with oat milk',
-      },
-    ],
-  },
-  {
-    day: 'Tuesday',
-    meals: [
-      {
-        name: 'Chicken and veg',
-        note: 'made with oat milk',
-      },
-    ],
-  },
-  {
-    day: 'Wednesday',
-    meals: [
-      {
-        name: 'Porridge',
-        note: 'made with oat milk',
-      },
-    ],
-  },
-  {
-    day: 'Thursday',
-    meals: [
-      {
-        name: 'Porridge',
-        note: 'made with oat milk',
-      },
-    ],
-  },
-  {
-    day: 'Friday',
-    meals: [
-      {
-        name: 'Porridge',
-        note: 'made with oat milk',
-      },
-    ],
-  },
-  {
-    day: 'Saturday',
-    content: 'something something',
-    meals: [
-      {
-        name: 'Porridge',
-        note: 'made with oat milk',
-      },
-    ],
-  },
-  {
-    day: 'Sunday',
-  },
-];
-
-const PlannerDays = () => {
+const PlannerDays = (props) => {
   return (
     <div className="week">
       <List
@@ -81,7 +16,7 @@ const PlannerDays = () => {
           xl: 4,
           xxl: 4,
         }}
-        dataSource={data}
+        dataSource={props.data}
         renderItem={(day) => {
           return (
             <List.Item>
