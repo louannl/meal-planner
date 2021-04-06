@@ -10,22 +10,37 @@ const layout = {
 };
 
 const AddMealModal = () => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [visible, setVisible] = useState(false);
   const [mealTagState, setMealTagState] = useState({
     items: [''],
     name: '',
   });
 
   const showModal = () => {
-    setIsModalVisible(true);
+    setVisible(true);
   };
 
+  const onCreate = (values) => {
+    console.log('Received values of form: ', values);
+    setVisible(false);
+  };
+
+  const [form] = Form.useForm();
+
   const handleOk = () => {
-    setIsModalVisible(false);
+    form
+      .validateFields()
+      .then((values) => {
+        form.resetFields();
+        onCreate(values);
+      })
+      .catch((info) => {
+        console.log('Validate Failed:', info);
+      });
   };
 
   const handleCancel = () => {
-    setIsModalVisible(false);
+    setVisible(false);
   };
 
   const onNameChange = (event) => {
@@ -63,7 +78,7 @@ const AddMealModal = () => {
       </Button>
       <Modal
         title="Add Meal"
-        visible={isModalVisible}
+        visible={visible}
         onOk={handleOk}
         onCancel={handleCancel}
         footer={[
@@ -75,7 +90,7 @@ const AddMealModal = () => {
             key="submit"
             htmlType="submit"
             type="primary"
-            // onClick={handleOk}
+            onClick={handleOk}
           >
             Submit
           </Button>,
@@ -83,6 +98,7 @@ const AddMealModal = () => {
       >
         <Form
           id="mealForm"
+          form={form}
           name="Edit_Meal_Item"
           {...layout}
           onFinish={onFinish}
