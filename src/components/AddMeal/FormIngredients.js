@@ -26,6 +26,7 @@ const FormIngredients = () => {
                     {...restField}
                     name={[name, 'ing_name"']}
                     fieldKey={[fieldKey, 'ing_name"']}
+                    rules={[{ required: true, message: 'Please enter a name' }]}
                   >
                     <Input style={{ width: '50%' }} />
                   </Form.Item>
@@ -34,6 +35,9 @@ const FormIngredients = () => {
                     {...restField}
                     name={[name, 'ing_amount"']}
                     fieldKey={[fieldKey, 'ing_amount"']}
+                    rules={[
+                      { required: true, message: 'Please enter an amount' },
+                    ]}
                   >
                     <InputNumber style={{ width: '30%' }} />
                   </Form.Item>
@@ -42,6 +46,12 @@ const FormIngredients = () => {
                     {...restField}
                     name={[name, 'ing_amount_type"']}
                     fieldKey={[fieldKey, 'ing_amount_type"']}
+                    rules={[
+                      {
+                        required: true,
+                        message: 'Please enter an amount type',
+                      },
+                    ]}
                   >
                     <Select style={{ width: '20%' }}>
                       <Option value="grams">g</Option>

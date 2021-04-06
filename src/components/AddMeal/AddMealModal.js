@@ -75,7 +75,7 @@ const AddMealModal = () => {
             key="submit"
             htmlType="submit"
             type="primary"
-            onClick={handleOk}
+            // onClick={handleOk}
           >
             Submit
           </Button>,
@@ -98,6 +98,7 @@ const AddMealModal = () => {
             name="meal_name"
             required
             tooltip="This is a required field"
+            rules={[{ required: true, message: 'Please enter a name' }]}
           >
             <Input />
           </Form.Item>

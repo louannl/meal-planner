@@ -5,8 +5,12 @@ const { Option } = Select;
 
 const FormDays = () => {
   return (
-    <Form.Item name="day" label="Day" required>
-      <Select defaultValue="">
+    <Form.Item
+      name="day"
+      label="Day"
+      rules={[{ required: true, message: 'Please select a day' }]}
+    >
+      <Select>
         <Option value="Monday">Monday</Option>
         <Option value="Tuesday">Tuesday</Option>
         <Option value="Wednesday">Wednesday</Option>
