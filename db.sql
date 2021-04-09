@@ -35,7 +35,13 @@ CREATE TABLE [IF NOT EXISTS] meal_ingredients (
     FOREIGN KEY (unit_type_id)
     	REFERENCES unit_types (id),
     
-)
+);
+
+CREATE TABLE [IF NOT EXISTS] tags (
+	id serial PRIMARY KEY,
+	name VARCHAR(50) UNIQUE NOT NULL,
+);
+
 CREATE TABLE [IF NOT EXISTS] day_meals (
 	id serial PRIMARY KEY,
 	meal_id INT NOT NULL,
@@ -44,5 +50,7 @@ CREATE TABLE [IF NOT EXISTS] day_meals (
 	day_id INT NOT NULL,
     FOREIGN KEY (day_id)
     	REFERENCES days (id),
-	tag VARCHAR(10) 
-)
+	tag_id INT,
+    FOREIGN KEY (tag_id)
+    	REFERENCES tags (id),
+);
