@@ -54,3 +54,11 @@ CREATE TABLE [IF NOT EXISTS] day_meals (
     FOREIGN KEY (tag_id)
     	REFERENCES tags (id),
 );
+
+-- "meta" data
+
+INSERT INTO days(name) 
+VALUES ('Monday'), ('Tuesday'), ('Wednesday'), ('Thursday'), ('Friday'), ('Saturday'), ('Sunday');
+
+INSERT INTO unit_types(name, symbol)
+VALUES ('grams', 'g'), ('millilitres', 'ml'), ('Amount', 'Amo.'), ('teaspoon', 'tsp'), ('tablespoon', 'tbsp'), ('pinch', 'pinch')
