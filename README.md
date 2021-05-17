@@ -4,7 +4,7 @@
 
 ## File structure notes
 
-1. Assets: This folder contains all the media seets, such as imgaes, videos, json files etc. 
+1. Assets: This folder contains all the media, such as images, videos, json files etc. 
 2. Components: This folder contains all the presentational/stateless components 
 3. Container: Contains all the stateful components
 4. Hoc: Higher order components: special types of components which wrap conventional features

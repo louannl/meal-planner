@@ -2,19 +2,20 @@ import React from 'react';
 import { List } from 'antd';
 
 const ShoppingIngredients = (props) => {
-  const check = () => {
-    console.log(props);
-  };
-
-  check();
   return (
     <List
-      dataSource={props.ingredients}
+      dataSource={props.data}
       renderItem={(ingredients) => {
         return (
-          <List.Item key={ingredients?.ing_name}>
-            <List.Item.Meta title={<a href="/">{ingredients?.ing_name}</a>} />
-            <div>x</div>
+          <List.Item key={ingredients?.ingredient}>
+            <List.Item.Meta
+              title={
+                <a href="/">
+                  {ingredients?.ingredient} {ingredients?.total}{' '}
+                  {ingredients?.unit}
+                </a>
+              }
+            />
           </List.Item>
         );
       }}

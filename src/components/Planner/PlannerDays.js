@@ -4,6 +4,7 @@ import MealItems from './MealItems';
 import AddMealModal from '../AddMeal/AddMealModal';
 
 const PlannerDays = (props) => {
+  console.log('meals:', props.data.meals);
   return (
     <div className="week">
       <List
@@ -16,11 +17,11 @@ const PlannerDays = (props) => {
           xl: 4,
           xxl: 4,
         }}
-        dataSource={props.data}
+        dataSource={props.data.meals}
         renderItem={(day) => {
           return (
             <List.Item>
-              <Card title={day.day} extra={<AddMealModal />}>
+              <Card title={day.name} extra={<AddMealModal />}>
                 <MealItems meals={day?.meals} />
               </Card>
             </List.Item>
