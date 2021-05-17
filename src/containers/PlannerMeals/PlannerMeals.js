@@ -13,7 +13,9 @@ export class PlannerMeals extends Component {
     get('/meals/meals-with-days').then((res) => {
       this.setState({
         meals: res.data.data,
-        days: res.data.data.map((day) => day.name),
+        days: res.data.data.map((day) => {
+          return { name: day.name, day_id: day.id };
+        }),
       });
     });
 

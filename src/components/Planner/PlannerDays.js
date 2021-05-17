@@ -20,7 +20,7 @@ const PlannerDays = (props) => {
         renderItem={(day) => {
           return (
             <List.Item>
-              <Card title={day.name} extra={<AddMealModal />}>
+              <Card title={day.name} extra={<AddMealModal data={props.data} />}>
                 <MealItems meals={day?.meals} />
               </Card>
             </List.Item>

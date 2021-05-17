@@ -3,21 +3,20 @@ import { Form, Select } from 'antd';
 
 const { Option } = Select;
 
-const FormDays = () => {
+const FormDays = (props) => {
+  const options = [];
+  props.data.forEach((day) => {
+    options.push(<Option value={day.day_id}>{day.name}</Option>);
+  });
+
   return (
     <Form.Item
       name="day"
       label="Day"
       rules={[{ required: true, message: 'Please select a day' }]}
     >
-      <Select>
-        <Option value="Monday">Monday</Option>
-        <Option value="Tuesday">Tuesday</Option>
-        <Option value="Wednesday">Wednesday</Option>
-        <Option value="Thursday">Thursday</Option>
-        <Option value="Friday">Friday</Option>
-        <Option value="Saturday">Saturday</Option>
-        <Option value="Sunday">Sunday</Option>
+      <Select mode="multiple" allowClear>
+        {options}
       </Select>
     </Form.Item>
   );

@@ -9,7 +9,7 @@ const layout = {
   wrapperCol: { span: 16 },
 };
 
-const AddMealModal = () => {
+const AddMealModal = (props) => {
   const [visible, setVisible] = useState(false);
   const [mealTagState, setMealTagState] = useState({
     items: [''],
@@ -108,7 +108,7 @@ const AddMealModal = () => {
           onValuesChange={onRequiredTypeChange}
           requiredMark={requiredMark}
         >
-          <FormDays />
+          <FormDays data={props.data.days} />
           <Form.Item
             label="Meal Name"
             name="meal_name"
@@ -119,11 +119,12 @@ const AddMealModal = () => {
             <Input />
           </Form.Item>
           <Form.Item
-            label="Meal Tag"
-            name="meal_tag"
+            label="Meal Tags"
+            name="meal_tags"
             tooltip="Create a custom meal tag to organise your meals by"
           >
             <Select
+              mode="multiple"
               placeholder="Custom meal tag"
               dropdownRender={(menu) => (
                 <div>
