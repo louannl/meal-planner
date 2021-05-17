@@ -5,13 +5,16 @@ import MealTags from './MealTags';
 const MealItems = (props) => {
   return (
     <List
+      itemLayout="vertical"
       dataSource={props.meals}
       renderItem={(meal) => {
         return (
-          <List.Item key={meal?.meal}>
-            <List.Item.Meta title={<a href="/">{meal?.meal}</a>} />
+          <List.Item key={meal?.meal} extra={<div>x</div>}>
+            <List.Item.Meta
+              style={{ margin: '4px 0' }}
+              title={<a href="/">{meal?.meal}</a>}
+            />
             <MealTags tags={meal?.tags} />
-            <div>x</div>
           </List.Item>
         );
       }}
