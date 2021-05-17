@@ -10,14 +10,14 @@ export class PlannerMeals extends Component {
   };
 
   componentDidMount() {
-    get('/meals/mealswithdays').then((res) => {
+    get('/meals/meals-with-days').then((res) => {
       this.setState({
         meals: res.data.data,
         days: res.data.data.map((day) => day.name),
       });
     });
 
-    get('/meals/mealingredients').then((res) => {
+    get('/meals/meal-ingredients').then((res) => {
       this.setState({
         ingredients: res.data.data,
       });
