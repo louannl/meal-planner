@@ -154,8 +154,10 @@ const AddMealModal = (props) => {
                 </div>
               )}
             >
-              {mealTagState.items.map((item) => (
-                <Option key={item}>{item}</Option>
+              {props.data.tags.map((tag) => (
+                <Option value={tag.id} key={tag}>
+                  {tag.name}
+                </Option>
               ))}
             </Select>
           </Form.Item>

@@ -1,7 +1,9 @@
 import React from 'react';
 import { Card, List } from 'antd';
 import MealItems from './MealItems';
-import AddMealModal from '../AddMeal/AddMealModal';
+import { MealModal } from '../../containers/MealModal/MealModal';
+
+//FIXME: Doesn't seem right to have MealModal in here, structure wise
 
 const PlannerDays = (props) => {
   return (
@@ -20,7 +22,7 @@ const PlannerDays = (props) => {
         renderItem={(day) => {
           return (
             <List.Item>
-              <Card title={day.name} extra={<AddMealModal data={props.data} />}>
+              <Card title={day.name} extra={<MealModal />}>
                 <MealItems meals={day?.meals} />
               </Card>
             </List.Item>
