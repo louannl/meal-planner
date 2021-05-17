@@ -4,7 +4,6 @@ import MealItems from './MealItems';
 import AddMealModal from '../AddMeal/AddMealModal';
 
 const PlannerDays = (props) => {
-  console.log('meals:', props.data.meals);
   return (
     <div className="week">
       <List
