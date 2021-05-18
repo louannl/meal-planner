@@ -5,7 +5,12 @@ import { PlusOutlined, MinusCircleOutlined } from '@ant-design/icons';
 const { Option } = Select;
 const InputGroup = Input.Group;
 
-const FormIngredients = () => {
+const FormIngredients = (props) => {
+  const unitTypes = [];
+  props.data.forEach((unit) => {
+    unitTypes.push(<Option value={unit.id}>{unit.symbol}</Option>);
+  });
+
   return (
     <Form.List name="ingredients">
       {(fields, { add, remove }) => (
@@ -24,8 +29,8 @@ const FormIngredients = () => {
                   <Form.Item
                     noStyle
                     {...restField}
-                    name={[name, 'ing_name"']}
-                    fieldKey={[fieldKey, 'ing_name"']}
+                    name={[name, 'name"']}
+                    fieldKey={[fieldKey, 'name"']}
                     rules={[{ required: true, message: 'Please enter a name' }]}
                   >
                     <Input style={{ width: '50%' }} />
@@ -33,8 +38,8 @@ const FormIngredients = () => {
                   <Form.Item
                     noStyle
                     {...restField}
-                    name={[name, 'ing_amount"']}
-                    fieldKey={[fieldKey, 'ing_amount"']}
+                    name={[name, 'amount"']}
+                    fieldKey={[fieldKey, 'amount"']}
                     rules={[
                       { required: true, message: 'Please enter an amount' },
                     ]}
@@ -44,8 +49,8 @@ const FormIngredients = () => {
                   <Form.Item
                     noStyle
                     {...restField}
-                    name={[name, 'ing_amount_type"']}
-                    fieldKey={[fieldKey, 'ing_amount_type"']}
+                    name={[name, 'unitType"']}
+                    fieldKey={[fieldKey, 'unitType"']}
                     rules={[
                       {
                         required: true,
@@ -53,11 +58,7 @@ const FormIngredients = () => {
                       },
                     ]}
                   >
-                    <Select style={{ width: '20%' }}>
-                      <Option value="grams">g</Option>
-                      <Option value="milliliters">ml</Option>
-                      <Option value="amount">Amo.</Option>
-                    </Select>
+                    <Select style={{ width: '20%' }}>{unitTypes}</Select>
                   </Form.Item>
                 </InputGroup>
               </Form.Item>

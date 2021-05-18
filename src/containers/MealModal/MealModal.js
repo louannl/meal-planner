@@ -6,6 +6,7 @@ export class MealModal extends Component {
   state = {
     days: [],
     tags: [],
+    unitTypes: [],
     meal: [],
   };
 
@@ -19,6 +20,12 @@ export class MealModal extends Component {
     get('/days').then((res) => {
       this.setState({
         days: res.data.data,
+      });
+    });
+
+    get('/unit-types').then((res) => {
+      this.setState({
+        unitTypes: res.data.data,
       });
     });
   }

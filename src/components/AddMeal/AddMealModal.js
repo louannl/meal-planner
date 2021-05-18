@@ -163,7 +163,7 @@ const AddMealModal = (props) => {
               ))}
             </Select>
           </Form.Item>
-          <FormIngredients />
+          <FormIngredients data={props.data.unitTypes} />
           {/* FIXME: <Form.Item label="Comment" name="comment">
             <Input.TextArea />
           </Form.Item> */}
