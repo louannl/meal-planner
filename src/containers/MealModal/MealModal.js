@@ -23,9 +23,14 @@ export class MealModal extends Component {
     });
   }
 
-  //TODO: If selected create new meal RENDER
-  //Get days
-  //Get Tags
+  //TODO: If selected create new meal RENDER modal data default:
+  // AND send update instead of create method
+  //   get('/meals/:id').then((res) => {
+  //     this.setState({
+  //       meal: res.data.data,
+  //     });
+  //   });
+
   //Get Existing Ingredients to select on table??
   //POST
 

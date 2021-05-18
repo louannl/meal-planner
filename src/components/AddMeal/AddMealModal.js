@@ -21,6 +21,7 @@ const AddMealModal = (props) => {
   };
 
   const onCreate = (values) => {
+    //TODO: Call Put/Post method
     console.log('Received values of form: ', values);
     setVisible(false);
   };
@@ -70,6 +71,7 @@ const AddMealModal = (props) => {
   };
 
   const { Option } = Select;
+  //TODO: And clear form button
 
   return (
     <>
@@ -111,7 +113,7 @@ const AddMealModal = (props) => {
           <FormDays data={props.data.days} />
           <Form.Item
             label="Meal Name"
-            name="meal_name"
+            name="mealName"
             required
             tooltip="This is a required field"
             rules={[{ required: true, message: 'Please enter a name' }]}
@@ -120,7 +122,7 @@ const AddMealModal = (props) => {
           </Form.Item>
           <Form.Item
             label="Meal Tags"
-            name="meal_tags"
+            name="mealTags"
             tooltip="Create a custom meal tag to organise your meals by"
           >
             <Select
@@ -162,9 +164,9 @@ const AddMealModal = (props) => {
             </Select>
           </Form.Item>
           <FormIngredients />
-          <Form.Item label="Comment" name="comment">
+          {/* FIXME: <Form.Item label="Comment" name="comment">
             <Input.TextArea />
-          </Form.Item>
+          </Form.Item> */}
         </Form>
       </Modal>
     </>
