@@ -3,7 +3,7 @@ import { Row, Col } from 'antd';
 
 import PlannerDays from './PlannerDays';
 import ShoppingList from '../ShoppingList/ShoppingList';
-import MealModal from '../AddMeal/MealModal';
+import MealModal from '../MealModal/MealModal';
 
 const Planner = (props) => {
   return (

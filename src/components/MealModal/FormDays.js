@@ -6,7 +6,7 @@ const { Option } = Select;
 const FormDays = (props) => {
   const options = [];
   props.data.forEach((day) => {
-    options.push(<Option value={day.id}>{day.name}</Option>);
+    options.push(<Option value={day.day_id}>{day.name}</Option>);
   });
 
   return (
