@@ -7,9 +7,12 @@ export class PlannerMeals extends Component {
     meals: [],
     ingredients: [],
     days: [],
+    unitTypes: [],
+    tags: [],
+    visible: false,
   };
 
-  componentDidMount() {
+  getMealsWithDaysHandler = () => {
     get('/meals/meals-with-days').then((res) => {
       this.setState({
         meals: res.data.data,
@@ -18,15 +21,54 @@ export class PlannerMeals extends Component {
         }),
       });
     });
+  };
 
+  getMealIngredientsHandler = () => {
     get('/meals/meal-ingredients').then((res) => {
       this.setState({
         ingredients: res.data.data,
       });
     });
+  };
+
+  getTagsHandler = () => {
+    get('/tags').then((res) => {
+      this.setState({
+        tags: res.data.data,
+      });
+    });
+  };
+
+  getUnitTypesHandler = () => {
+    get('/unit-types').then((res) => {
+      this.setState({
+        unitTypes: res.data.data,
+      });
+    });
+  };
+  //FIXME: use redux or similar to handle state globally?
+  toggleModalHandler = () => {
+    console.log('button pressed');
+    this.setState((prevState) => {
+      return { visible: !prevState.visible };
+    });
+  };
+
+  componentDidMount() {
+    this.getMealsWithDaysHandler();
+    this.getMealIngredientsHandler();
+    this.getTagsHandler();
+    this.getUnitTypesHandler();
   }
 
   render() {
-    return <Planner data={this.state} />;
+    return (
+      <Planner
+        data={this.state}
+        getUnitType={this.getUnitTypesHandler}
+        getTags={this.getTagsHandler}
+        toggleModal={this.toggleModalHandler}
+      />
+    );
   }
 }

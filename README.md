@@ -11,8 +11,9 @@
 5. Store: Stores global state (react-redux)
 
 
-
-
+## comments
+- MealModal was rendered seven times on refresh/initialisation due to the model being rendered for each meal-planner day
+Fixed: Replaced with a button that changes the state 'visibile' instead. At current this goes through a few layers so may make it less flexible.
 
 
 

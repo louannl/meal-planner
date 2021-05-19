@@ -9,21 +9,16 @@ const layout = {
   wrapperCol: { span: 16 },
 };
 
-const AddMealModal = (props) => {
-  const [visible, setVisible] = useState(false);
+const MealModal = (props) => {
   const [mealTagState, setMealTagState] = useState({
     items: [''],
     name: '',
   });
 
-  const showModal = () => {
-    setVisible(true);
-  };
-
   const onCreate = (values) => {
     //TODO: Call Put/Post method
     console.log('Received values of form: ', values);
-    setVisible(false);
+    // setVisible(false);
   };
 
   const [form] = Form.useForm();
@@ -38,10 +33,6 @@ const AddMealModal = (props) => {
       .catch((info) => {
         console.log('Validate Failed:', info);
       });
-  };
-
-  const handleCancel = () => {
-    setVisible(false);
   };
 
   const onNameChange = (event) => {
@@ -75,16 +66,13 @@ const AddMealModal = (props) => {
 
   return (
     <>
-      <Button type="primary" shape="circle" onClick={showModal}>
-        +
-      </Button>
       <Modal
         title="Add Meal"
-        visible={visible}
+        visible={props.visible}
         onOk={handleOk}
-        onCancel={handleCancel}
+        onCancel={props.toggleModal}
         footer={[
-          <Button key="back" onClick={handleCancel}>
+          <Button key="back" onClick={props.toggleModal}>
             Cancel
           </Button>,
           <Button
@@ -110,7 +98,7 @@ const AddMealModal = (props) => {
           onValuesChange={onRequiredTypeChange}
           requiredMark={requiredMark}
         >
-          <FormDays data={props.data.days} />
+          <FormDays data={props.days} />
           <Form.Item
             label="Meal Name"
             name="mealName"
@@ -156,14 +144,14 @@ const AddMealModal = (props) => {
                 </div>
               )}
             >
-              {props.data.tags.map((tag) => (
+              {props.tags.map((tag) => (
                 <Option value={tag.id} key={tag}>
                   {tag.name}
                 </Option>
               ))}
             </Select>
           </Form.Item>
-          <FormIngredients data={props.data.unitTypes} />
+          <FormIngredients data={props.unitTypes} />
           {/* FIXME: <Form.Item label="Comment" name="comment">
             <Input.TextArea />
           </Form.Item> */}
@@ -173,4 +161,4 @@ const AddMealModal = (props) => {
   );
 };
 
-export default AddMealModal;
+export default MealModal;
