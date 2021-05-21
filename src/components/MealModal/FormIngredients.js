@@ -11,6 +11,8 @@ const FormIngredients = (props) => {
     unitTypes.push(<Option value={unit.id}>{unit.symbol}</Option>);
   });
 
+  //FIXME: Pass in default ingredients
+
   return (
     <Form.List name="ingredients">
       {(fields, { add, remove }) => (
@@ -65,6 +67,7 @@ const FormIngredients = (props) => {
               <MinusCircleOutlined onClick={() => remove(name)} />
             </Space>
           ))}
+
           <Form.Item wrapperCol={{ offset: 8 }}>
             <Button
               type="dashed"

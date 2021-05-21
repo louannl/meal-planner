@@ -10,6 +10,8 @@
 4. Hoc: Higher order components: special types of components which wrap conventional features
 5. Store: Stores global state (react-redux)
 
+## Todo
+- change icon
 
 ## comments
 - MealModal was rendered seven times on refresh/initialisation due to the model being rendered for each meal-planner day

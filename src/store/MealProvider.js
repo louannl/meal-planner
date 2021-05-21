@@ -20,7 +20,7 @@ const MealProvider = (props) => {
   };
 
   const mealContext = {
-    meal: defaultMealState,
+    default: defaultMealState,
     createMeal: createMealHandler,
   };
 

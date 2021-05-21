@@ -88,13 +88,10 @@ const MealModal = (props) => {
             tooltip="This is a required field"
             rules={[{ required: true, message: 'Please enter a name' }]}
           >
-            <Input />
+            <Input defaultValue={mealCtx.default.meal.mealName} />
           </Form.Item>
           <FormTags tags={props.tags} />
           <FormIngredients data={props.unitTypes} />
-          {/* TODO: <Form.Item label="Comment" name="comment">
-            <Input.TextArea />
-          </Form.Item> */}
         </Form>
       </Modal>
     </>

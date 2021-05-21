@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Form, Select, Input, Divider, Button } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
+import MealContext from '../../store/meal-context';
 
 const { Option } = Select;
 
 const FormTags = (props) => {
+  const mealCtx = useContext(MealContext);
+
   const [mealTagState, setMealTagState] = useState({
     items: [''],
     name: '',
@@ -26,6 +29,12 @@ const FormTags = (props) => {
     });
   };
 
+  const TagOptions = props.tags.map((tag) => (
+    <Option value={tag.name} key={tag}>
+      {tag.name}
+    </Option>
+  ));
+
   return (
     <Form.Item
       label="Meal Tags"
@@ -35,6 +44,7 @@ const FormTags = (props) => {
       <Select
         mode="multiple"
         placeholder="Custom meal tag"
+        defaultValue={mealCtx.default.meal.mealTags}
         dropdownRender={(menu) => (
           <div>
             {menu}
@@ -61,11 +71,7 @@ const FormTags = (props) => {
           </div>
         )}
       >
-        {props.tags.map((tag) => (
-          <Option value={tag.name} key={tag}>
-            {tag.name}
-          </Option>
-        ))}
+        {TagOptions}
       </Select>
     </Form.Item>
   );

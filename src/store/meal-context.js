@@ -3,9 +3,10 @@ import React from 'react';
 const MealContext = React.createContext({
   meal: {
     days: [],
-    name: '',
-    tags: [],
+    mealName: '',
+    mealTags: [],
     ingredients: [],
+    submit: 'create',
   },
   createMeal: (meal) => {},
   editMeal: () => {},
