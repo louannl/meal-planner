@@ -62,7 +62,7 @@ const MealModal = (props) => {
   };
 
   const { Option } = Select;
-  //TODO: And clear form button
+  //TODO: Add clear form button
 
   return (
     <>

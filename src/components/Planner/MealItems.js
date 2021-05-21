@@ -9,7 +9,7 @@ const MealItems = (props) => {
       dataSource={props.meals}
       renderItem={(meal) => {
         return (
-          <List.Item key={meal?.meal} extra={<div>x</div>}>
+          <List.Item value={meal?.id} key={meal?.meal} extra={<div>x</div>}>
             <List.Item.Meta
               style={{ margin: '4px 0' }}
               title={<a href="/">{meal?.meal}</a>}

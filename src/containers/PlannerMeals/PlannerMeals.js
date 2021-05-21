@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { get } from '../../api/axios';
 import Planner from '../../components/Planner/Planner';
 
+//FIXME: do not need to use class based components in react 16.8+
 export class PlannerMeals extends Component {
   state = {
     meals: [],
@@ -48,7 +49,6 @@ export class PlannerMeals extends Component {
   };
   //FIXME: use redux or similar to handle state globally?
   toggleModalHandler = () => {
-    console.log('button pressed');
     this.setState((prevState) => {
       return { visible: !prevState.visible };
     });
