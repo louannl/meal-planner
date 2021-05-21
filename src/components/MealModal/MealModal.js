@@ -20,6 +20,11 @@ const MealModal = (props) => {
     // setVisible(false);
   };
 
+  const onEdit = (values) => {
+    console.log('Received values of form: ', values);
+    mealCtx.editMeal(values);
+  };
+
   const [form] = Form.useForm();
 
   const handleOk = () => {
@@ -28,6 +33,18 @@ const MealModal = (props) => {
       .then((values) => {
         form.resetFields();
         onCreate(values);
+      })
+      .catch((info) => {
+        console.log('Validate Failed:', info);
+      });
+  };
+
+  const handleEdit = () => {
+    form
+      .validateFields()
+      .then((values) => {
+        //close model?
+        onEdit(values);
       })
       .catch((info) => {
         console.log('Validate Failed:', info);
@@ -44,6 +61,32 @@ const MealModal = (props) => {
     setRequiredMarkType(requiredMarkValue);
   };
 
+  let submitBtn = (
+    <Button
+      form="mealForm"
+      key="submit"
+      htmlType="submit"
+      type="primary"
+      onClick={handleOk}
+    >
+      Create
+    </Button>
+  );
+
+  if (mealCtx.default.meal.submit === 'edit') {
+    submitBtn = (
+      <Button
+        form="mealForm"
+        key="submit"
+        htmlType="submit"
+        type="primary"
+        onClick={handleEdit}
+      >
+        Edit
+      </Button>
+    );
+  }
+
   //TODO: Add clear form button
 
   return (
@@ -57,15 +100,7 @@ const MealModal = (props) => {
           <Button key="back" onClick={props.toggleModal}>
             Cancel
           </Button>,
-          <Button
-            form="mealForm"
-            key="submit"
-            htmlType="submit"
-            type="primary"
-            onClick={handleOk}
-          >
-            Submit
-          </Button>,
+          submitBtn,
         ]}
       >
         <Form

@@ -1,5 +1,5 @@
 import MealContext from './meal-context';
-import { post } from '../api/axios';
+import { post, put } from '../api/axios';
 
 const defaultMealState = {
   meal: {
@@ -19,9 +19,17 @@ const MealProvider = (props) => {
     });
   };
 
+  const editMealHandler = (meal, id) => {
+    put(`/meals/${id}`, meal).then((res) => {
+      //TODO: Send some response and resend get request
+      console.log(res);
+    });
+  };
+
   const mealContext = {
     default: defaultMealState,
     createMeal: createMealHandler,
+    editMeal: editMealHandler,
   };
 
   return (
