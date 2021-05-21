@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { Modal, Button, Form, Input, Select, Divider } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
+import React, { useContext, useState } from 'react';
+import { Modal, Button, Form, Input } from 'antd';
 import FormIngredients from './FormIngredients';
 import FormDays from './FormDays';
+import FormTags from './FormTags';
+import MealContext from '../../store/meal-context';
 
 const layout = {
   labelCol: { span: 8 },
@@ -10,14 +11,12 @@ const layout = {
 };
 
 const MealModal = (props) => {
-  const [mealTagState, setMealTagState] = useState({
-    items: [''],
-    name: '',
-  });
+  const mealCtx = useContext(MealContext);
 
   const onCreate = (values) => {
     //TODO: Call Put/Post method
     console.log('Received values of form: ', values);
+    mealCtx.createMeal(values);
     // setVisible(false);
   };
 
@@ -35,22 +34,6 @@ const MealModal = (props) => {
       });
   };
 
-  const onNameChange = (event) => {
-    const { items } = mealTagState;
-    setMealTagState({
-      name: event.target.value,
-      items,
-    });
-  };
-
-  const addItem = () => {
-    const { items, name } = mealTagState;
-    setMealTagState({
-      items: [...items, name || 'New item'],
-      name: '',
-    });
-  };
-
   const onFinish = (values) => {
     console.log('Received values of form:', values);
   };
@@ -61,7 +44,6 @@ const MealModal = (props) => {
     setRequiredMarkType(requiredMarkValue);
   };
 
-  const { Option } = Select;
   //TODO: Add clear form button
 
   return (
@@ -108,51 +90,9 @@ const MealModal = (props) => {
           >
             <Input />
           </Form.Item>
-          <Form.Item
-            label="Meal Tags"
-            name="mealTags"
-            tooltip="Create a custom meal tag to organise your meals by"
-          >
-            <Select
-              mode="multiple"
-              placeholder="Custom meal tag"
-              dropdownRender={(menu) => (
-                <div>
-                  {menu}
-                  <Divider style={{ margin: '4px 0' }} />
-                  <div
-                    style={{ display: 'flex', flexWrap: 'nowrap', padding: 8 }}
-                  >
-                    <Input
-                      style={{ flex: 'auto' }}
-                      value={mealTagState.name}
-                      onChange={onNameChange}
-                    />
-                    <Button
-                      style={{
-                        flex: 'none',
-                        padding: '8px',
-                        display: 'block',
-                        cursor: 'pointer',
-                        border: 'none',
-                      }}
-                      onClick={addItem}
-                    >
-                      <PlusOutlined /> Add item
-                    </Button>
-                  </div>
-                </div>
-              )}
-            >
-              {props.tags.map((tag) => (
-                <Option value={tag.id} key={tag}>
-                  {tag.name}
-                </Option>
-              ))}
-            </Select>
-          </Form.Item>
+          <FormTags tags={props.tags} />
           <FormIngredients data={props.unitTypes} />
-          {/* FIXME: <Form.Item label="Comment" name="comment">
+          {/* TODO: <Form.Item label="Comment" name="comment">
             <Input.TextArea />
           </Form.Item> */}
         </Form>

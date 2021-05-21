@@ -29,8 +29,8 @@ const FormIngredients = (props) => {
                   <Form.Item
                     noStyle
                     {...restField}
-                    name={[name, 'name"']}
-                    fieldKey={[fieldKey, 'name"']}
+                    name={[name, 'name']}
+                    fieldKey={[fieldKey, 'name']}
                     rules={[{ required: true, message: 'Please enter a name' }]}
                   >
                     <Input style={{ width: '50%' }} />
@@ -38,8 +38,8 @@ const FormIngredients = (props) => {
                   <Form.Item
                     noStyle
                     {...restField}
-                    name={[name, 'amount"']}
-                    fieldKey={[fieldKey, 'amount"']}
+                    name={[name, 'amount']}
+                    fieldKey={[fieldKey, 'amount']}
                     rules={[
                       { required: true, message: 'Please enter an amount' },
                     ]}
@@ -49,8 +49,8 @@ const FormIngredients = (props) => {
                   <Form.Item
                     noStyle
                     {...restField}
-                    name={[name, 'unitType"']}
-                    fieldKey={[fieldKey, 'unitType"']}
+                    name={[name, 'unitType']}
+                    fieldKey={[fieldKey, 'unitType']}
                     rules={[
                       {
                         required: true,

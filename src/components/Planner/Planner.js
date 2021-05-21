@@ -4,18 +4,21 @@ import { Row, Col } from 'antd';
 import PlannerDays from './PlannerDays';
 import ShoppingList from '../ShoppingList/ShoppingList';
 import MealModal from '../MealModal/MealModal';
+import MealProvider from '../../store/MealProvider';
 
 const Planner = (props) => {
   return (
     <div className="">
       <Row gutter={8}>
-        <MealModal
-          days={props.data.days}
-          tags={props.data.tags}
-          unitTypes={props.data.unitTypes}
-          visible={props.data.visible}
-          toggleModal={props.toggleModal}
-        />
+        <MealProvider>
+          <MealModal
+            days={props.data.days}
+            tags={props.data.tags}
+            unitTypes={props.data.unitTypes}
+            visible={props.data.visible}
+            toggleModal={props.toggleModal}
+          />
+        </MealProvider>
         <Col span={18}>
           <PlannerDays data={props.data} toggleModal={props.toggleModal} />
         </Col>

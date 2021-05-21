@@ -1,52 +1,34 @@
-import mealContext from './meal-context';
-import { get, post, put, remove } from '../../api/axios';
+import MealContext from './meal-context';
+import { post } from '../api/axios';
 
 const defaultMealState = {
   meal: {
     days: [],
-    name: '',
-    tags: [],
+    mealName: '',
+    mealTags: [],
     ingredients: [],
+    submit: 'create',
   },
 };
 
-const mealReducer = (state, action) => {
-  if (action.type === 'ADD') {
-    //set state to default
-    //set submit to add meal
-  }
-
-  if (action.type === 'EDIT') {
-    //set state to get meal
-    //set submit to PUT method
-  }
-};
-
-const mealProvider = (props) => {
-  //TODO: ADD MEAL
-  const AddMealHandler = (meal) => {
-    //onsubmit POST
+const MealProvider = (props) => {
+  const createMealHandler = (meal) => {
+    post('/meals', meal).then((res) => {
+      //TODO: Send some response and resend get request
+      console.log(res);
+    });
   };
 
-  //TODO: EDIT MEAL
-
-  const EditMealHandler = (id) => {
-    //onsubmit PUT
+  const mealContext = {
+    meal: defaultMealState,
+    createMeal: createMealHandler,
   };
 
-  //TODO: Remove MEAL
-
-  //TODO: SubmitHandler ? if add/post/
-
-  //   const getMealbyIdHandler = (id) => {
-  //     get(`/meals/${id}`).then((res) => {
-  //       this.setState({
-  //         meal: res.data.data,
-  //       });
-  //     });
-  //   };
-
-  const mealContext = {};
+  return (
+    <MealContext.Provider value={mealContext}>
+      {props.children}
+    </MealContext.Provider>
+  );
 };
 
-export default mealProvider;
+export default MealProvider;

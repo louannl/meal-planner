@@ -1,16 +1,15 @@
 import React from 'react';
 
-const ReqContext = React.createContext({
+const MealContext = React.createContext({
   meal: {
     days: [],
     name: '',
     tags: [],
     ingredients: [],
   },
-  addMeal: () => {},
+  createMeal: (meal) => {},
+  editMeal: () => {},
   removeMeal: () => {},
-  editMeal: (id) => {},
-  submitMeal: (meal) => {},
 });
 
-export default ReqContext;
+export default MealContext;
