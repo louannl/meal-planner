@@ -1,20 +1,31 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, Form, Input, InputNumber, Select, Space } from 'antd';
 import { PlusOutlined, MinusCircleOutlined } from '@ant-design/icons';
+
+import MealContext from '../../store/meal-context';
 
 const { Option } = Select;
 const InputGroup = Input.Group;
 
 const FormIngredients = (props) => {
+  const mealCtx = useContext(MealContext);
+
   const unitTypes = [];
   props.data.forEach((unit) => {
     unitTypes.push(<Option value={unit.id}>{unit.symbol}</Option>);
   });
 
-  //FIXME: Pass in default ingredients
+  // FIXME: default ingredients come out with no required rule?
+  let defaultIngredients = mealCtx.default.meal.ingredients.map((ing) => {
+    return {
+      name: ing.ingredient,
+      amount: ing.amount,
+      unitType: ing.unit,
+    };
+  });
 
   return (
-    <Form.List name="ingredients">
+    <Form.List name="ingredients" initialValue={defaultIngredients}>
       {(fields, { add, remove }) => (
         <>
           {fields.map(({ key, name, fieldKey, ...restField }) => (

@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Modal, Button, Form, Input } from 'antd';
+
 import FormIngredients from './FormIngredients';
 import FormDays from './FormDays';
 import FormTags from './FormTags';
@@ -39,12 +40,16 @@ const MealModal = (props) => {
       });
   };
 
+  const clearForm = () => {
+    form.resetFields();
+  };
+
   const handleEdit = () => {
     form
       .validateFields()
-      .then((values) => {
+      .then((values, id) => {
         //close model?
-        onEdit(values);
+        onEdit(values, id);
       })
       .catch((info) => {
         console.log('Validate Failed:', info);
@@ -62,15 +67,20 @@ const MealModal = (props) => {
   };
 
   let submitBtn = (
-    <Button
-      form="mealForm"
-      key="submit"
-      htmlType="submit"
-      type="primary"
-      onClick={handleOk}
-    >
-      Create
-    </Button>
+    <>
+      <Button danger onClick={clearForm}>
+        Clear
+      </Button>
+      <Button
+        form="mealForm"
+        key="submit"
+        htmlType="submit"
+        type="primary"
+        onClick={handleOk}
+      >
+        Create
+      </Button>
+    </>
   );
 
   if (mealCtx.default.meal.submit === 'edit') {
@@ -86,8 +96,6 @@ const MealModal = (props) => {
       </Button>
     );
   }
-
-  //TODO: Add clear form button
 
   return (
     <>
