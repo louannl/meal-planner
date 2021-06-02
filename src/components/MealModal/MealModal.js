@@ -47,8 +47,19 @@ const MealModal = (props) => {
 
   const onCreate = (values) => {
     //TODO: Handle Okay and errors and refresh
-    console.log('Received values of form: ', values);
-    createMeal(values);
+    const meal = {
+      mealName: values.mealName,
+      dayIds: values.dayIds,
+      mealTags: values.mealTags ? values.mealTags : [],
+      ingredients: values.ingredients.map((ingredient) => {
+        return {
+          name: ingredient.name,
+          amount: ingredient.amount,
+          unitType: ingredient.unitType,
+        };
+      }),
+    };
+    createMeal(meal);
     toggleModal();
   };
 
@@ -68,16 +79,17 @@ const MealModal = (props) => {
     const meal = {
       mealName: values.mealName,
       dayIds: values.dayIds,
-      mealTags: values.mealTags,
+      mealTags: values.mealTags ? values.mealTags : [],
       ingredients: values.ingredients.map((ingredient) => {
         return {
           name: ingredient.name,
           amount: ingredient.amount,
-          unitType: ingredient.unitId,
+          unitType: ingredient.unitType,
         };
       }),
     };
     editMeal(meal, mealId);
+    toggleModal();
   };
 
   const handleEdit = () => {
@@ -169,6 +181,7 @@ const MealModal = (props) => {
         form={form}
         name="Edit_Meal_Item"
         {...layout}
+        //FIXME: DO I NEED onFinish?
         onFinish={onFinish}
         initialValues={{
           requiredMarkValue: requiredMark,

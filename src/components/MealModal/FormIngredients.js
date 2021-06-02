@@ -2,24 +2,24 @@ import React from 'react';
 import { Button, Form, Input, InputNumber, Select, Space } from 'antd';
 import { PlusOutlined, MinusCircleOutlined } from '@ant-design/icons';
 
-const { Option } = Select;
+// const { Option } = Select;
 const InputGroup = Input.Group;
 
 const FormIngredients = (props) => {
   const unitTypes = [];
   props.data.forEach((unit) => {
-    unitTypes.push(<Option value={unit.id}>{unit.symbol}</Option>);
+    unitTypes.push({ value: unit.id, label: unit.symbol });
   });
 
   let defaultIngredients = [];
   if (props.default) {
-    console.log(props.default);
+    console.log('ingredients', props);
     defaultIngredients = props.default.map((ing) => {
       return {
         name: ing.ingredient,
         amount: ing.amount,
-        unitType: ing.unit,
-        unitId: ing.id,
+        unitType: ing.id,
+        // unitId: ing.id,
       };
     });
   }
@@ -75,7 +75,7 @@ const FormIngredients = (props) => {
                           },
                         ]}
                       >
-                        <Select style={{ width: '20%' }}>{unitTypes}</Select>
+                        <Select options={unitTypes} style={{ width: '20%' }} />
                       </Form.Item>
                     </InputGroup>
                   </Form.Item>

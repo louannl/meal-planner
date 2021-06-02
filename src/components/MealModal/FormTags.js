@@ -32,11 +32,18 @@ const FormTags = (props) => {
     </Option>
   ));
 
+  let defaultTags = [];
+
+  if (props.default) {
+    defaultTags = props.default;
+  }
+
   return (
     <Form.Item
       label="Meal Tags"
       name="mealTags"
       tooltip="Create a custom meal tag to organize your meals by"
+      initialValue={defaultTags}
     >
       <Select
         mode="multiple"

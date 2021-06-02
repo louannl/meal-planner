@@ -63,10 +63,10 @@ const PlannerMeals = () => {
   };
 
   //Delete meal
-  const deleteMealHandler = (id) => {
+  const deleteMealHandler = (id, dayId) => {
     setIsLoading(true);
     setError(null);
-    remove(`/meals/${id}`).then((res) => {
+    remove(`/meals/${id}/${dayId}`).then((res) => {
       updateMealsWithDaysHandler();
       getIngredientsHandler();
       console.log(res);

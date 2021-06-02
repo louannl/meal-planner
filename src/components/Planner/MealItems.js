@@ -10,8 +10,6 @@ const MealItems = (props) => {
     await props.toggleModal();
   };
 
-  //TODO: Delete meal from day only if multiple days
-
   return (
     <List
       itemLayout="vertical"
@@ -24,7 +22,7 @@ const MealItems = (props) => {
             extra={
               <div
                 style={{ cursor: 'pointer' }}
-                onClick={() => props.deleteMeal(meal?.id)}
+                onClick={() => props.deleteMeal(meal?.id, props.dayId)}
               >
                 <CloseOutlined />
               </div>

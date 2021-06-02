@@ -10,13 +10,20 @@ const FormDays = (props) => {
     options.push(<Option value={day.day_id}>{day.name}</Option>);
   });
 
+  let defaultDays = [];
+
+  if (props.default) {
+    defaultDays = props.default;
+  }
+
   return (
     <Form.Item
       name="dayIds"
       label="Day"
+      initialValue={defaultDays}
       rules={[{ required: true, message: 'Please select a day' }]}
     >
-      <Select mode="multiple" defaultValue={props.default} allowClear>
+      <Select mode="multiple" allowClear>
         {options}
       </Select>
     </Form.Item>

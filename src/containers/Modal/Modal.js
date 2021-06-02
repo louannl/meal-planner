@@ -48,6 +48,7 @@ const Modal = (props) => {
 
     setEditMode(true);
     get(`/meals/${mealId}`).then((res) => {
+      console.log('default res:', res);
       setDefaults({
         mealDays: res.data.data.days,
         mealName: res.data.data.meal,

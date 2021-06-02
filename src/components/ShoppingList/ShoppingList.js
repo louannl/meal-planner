@@ -6,7 +6,11 @@ const ShoppingList = (props) => {
   return (
     <List>
       <Card title="Shopping List">
-        <ShoppingIngredients data={props.data} />
+        <ShoppingIngredients
+          isLoading={props.Loading}
+          error={props.error}
+          listItems={props.listItems}
+        />
       </Card>
     </List>
   );

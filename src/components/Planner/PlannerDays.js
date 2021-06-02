@@ -38,6 +38,7 @@ const PlannerDays = (props) => {
               >
                 <MealItems
                   meals={day?.meals}
+                  dayId={day?.id}
                   toggleModal={props.toggleModal}
                   selectMeal={props.selectMeal}
                   deleteMeal={props.deleteMeal}

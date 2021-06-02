@@ -5,7 +5,7 @@ const CheckboxGroup = Checkbox.Group;
 
 const ShoppingIngredients = (props) => {
   const plainOptions = props.listItems.map((ingredients) => {
-    return `${ingredients.ingredient} ${ingredients.total} ${ingredients.unit}`;
+    return `${ingredients.total} ${ingredients.unit} ${ingredients.ingredient}`;
   });
   const defaultCheckedList = [];
 
@@ -39,11 +39,12 @@ const ShoppingIngredients = (props) => {
         options={plainOptions}
         value={checkedList}
         onChange={onChange}
+        style={{ width: '100%' }}
       />
     </React.Fragment>
   );
 
-  if (props.isLoading) {
+  if (props.loading) {
     content = <Skeleton active />;
   }
 
