@@ -22,7 +22,7 @@ export const post = (url = '', body = {}, options = {}) =>
       .catch((err) => rej(err));
   });
 
-export const put = (url = '', body = {}, options = {}) =>
+export const put = async (url = '', body = {}, options = {}) =>
   new Promise((res, rej) => {
     axios.defaults.baseURL = baseURL;
 

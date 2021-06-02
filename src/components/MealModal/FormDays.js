@@ -1,12 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Form, Select } from 'antd';
-import MealContext from '../../store/meal-context';
 
 const { Option } = Select;
 
 const FormDays = (props) => {
-  const mealCtx = useContext(MealContext);
-
   const options = [];
 
   props.data.forEach((day) => {
@@ -19,11 +16,7 @@ const FormDays = (props) => {
       label="Day"
       rules={[{ required: true, message: 'Please select a day' }]}
     >
-      <Select
-        mode="multiple"
-        defaultValue={mealCtx.default.meal.days}
-        allowClear
-      >
+      <Select mode="multiple" defaultValue={props.default} allowClear>
         {options}
       </Select>
     </Form.Item>

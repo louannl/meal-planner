@@ -1,8 +1,17 @@
 import React from 'react';
-import { Card, List, Button } from 'antd';
+import { Card, List, Button, Skeleton } from 'antd';
 import MealItems from './MealItems';
 
 const PlannerDays = (props) => {
+  if (props.loading) {
+    return <Skeleton active />;
+  }
+
+  const handleNewMeal = async () => {
+    await props.selectMeal();
+    await props.toggleModal();
+  };
+
   return (
     <div className="week">
       <List
@@ -15,25 +24,24 @@ const PlannerDays = (props) => {
           xl: 4,
           xxl: 4,
         }}
-        dataSource={props.data.meals}
+        dataSource={props.meals}
         renderItem={(day) => {
           return (
             <List.Item>
-              {/* Basically MEal model needs to be replaced with button only */}
               <Card
                 title={day.name}
                 extra={
-                  <Button
-                    type="primary"
-                    shape="circle"
-                    onClick={props.toggleModal}
-                  >
+                  <Button type="primary" shape="circle" onClick={handleNewMeal}>
                     +
                   </Button>
                 }
               >
-                {/* <Card title={day.name} extra={<MealModal />}> */}
-                <MealItems meals={day?.meals} />
+                <MealItems
+                  meals={day?.meals}
+                  toggleModal={props.toggleModal}
+                  selectMeal={props.selectMeal}
+                  deleteMeal={props.deleteMeal}
+                />
               </Card>
             </List.Item>
           );

@@ -2,31 +2,37 @@ import React from 'react';
 import { Row, Col } from 'antd';
 
 import PlannerDays from './PlannerDays';
-import ShoppingList from '../ShoppingList/ShoppingList';
-import MealModal from '../MealModal/MealModal';
-import MealProvider from '../../store/MealProvider';
+import Modal from '../../containers/Modal/Modal';
+import ShoppingIngredients from '../ShoppingList/ShoppingIngredients';
 
 const Planner = (props) => {
   return (
-    <div className="">
-      <Row gutter={8}>
-        <MealProvider>
-          <MealModal
-            days={props.data.days}
-            tags={props.data.tags}
-            unitTypes={props.data.unitTypes}
-            visible={props.data.visible}
-            toggleModal={props.toggleModal}
-          />
-        </MealProvider>
-        <Col span={18}>
-          <PlannerDays data={props.data} toggleModal={props.toggleModal} />
-        </Col>
-        <Col span={5} offset={1}>
-          <ShoppingList data={props.data.ingredients} />
-        </Col>
-      </Row>
-    </div>
+    <Row gutter={8}>
+      <Modal
+        visible={props.visible}
+        days={props.days}
+        toggleModal={props.toggleModal}
+        mealId={props.selectedMeal}
+        updateMeals={props.updateMeals}
+      />
+      <Col span={18}>
+        <PlannerDays
+          loading={props.loading}
+          meals={props.meals}
+          error={props.error}
+          selectMeal={props.selectMeal}
+          toggleModal={props.toggleModal}
+          deleteMeal={props.deleteMeal}
+        />
+      </Col>
+      <Col span={5} offset={1}>
+        <ShoppingIngredients
+          listItems={props.ingredients}
+          isLoading={props.Loading}
+          error={props.error}
+        />
+      </Col>
+    </Row>
   );
 };
 

@@ -1,6 +1,6 @@
 import './App.css';
+import PlannerMeals from './containers/PlannerMeals/PlannerMeals';
 // import Planner from './components/Planner/Planner';
-import { PlannerMeals } from './containers/PlannerMeals/PlannerMeals';
 
 function App() {
   return (

@@ -1,74 +1,95 @@
-import React, { Component } from 'react';
-import { get } from '../../api/axios';
+import React, { useCallback, useEffect, useState } from 'react';
+import { get, remove } from '../../api/axios';
 import Planner from '../../components/Planner/Planner';
 
 //FIXME: do not need to use class based components in react 16.8+
-export class PlannerMeals extends Component {
-  state = {
-    meals: [],
-    ingredients: [],
-    days: [],
-    unitTypes: [],
-    tags: [],
-    visible: false,
+const PlannerMeals = () => {
+  const [visible, setVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [meals, setMeals] = useState([]);
+  const [days, setDays] = useState([]);
+  const [selectedMeal, setSelectedMeal] = useState('');
+  const [mealIngredients, setMealIngredients] = useState([]);
+  //TODO: Move ingredients here so we can run them both
+
+  const getIngredientsHandler = useCallback(async () => {
+    setIsLoading(true);
+    setError(null);
+    await get('/meals/meal-ingredients').then((res) => {
+      setMealIngredients(res.data.data);
+    });
+    setIsLoading(false);
+  }, []);
+
+  useEffect(() => {
+    getIngredientsHandler();
+  }, [getIngredientsHandler]);
+
+  const toggleModalHandler = () => {
+    setVisible((prevState) => !prevState);
   };
 
-  getMealsWithDaysHandler = () => {
-    get('/meals/meals-with-days').then((res) => {
-      this.setState({
-        meals: res.data.data,
-        days: res.data.data.map((day) => {
+  const selectMeal = (id) => {
+    setSelectedMeal(id);
+  };
+
+  const getMealsWithDaysHandler = useCallback(async () => {
+    setIsLoading(true);
+    setError(null);
+    await get('/meals/meals-with-days').then((res) => {
+      setMeals(res.data.data);
+      setDays(
+        res.data.data.map((day) => {
           return { name: day.name, day_id: day.id };
-        }),
-      });
+        })
+      );
     });
+    setIsLoading(false);
+  }, []);
+
+  useEffect(() => {
+    getMealsWithDaysHandler();
+  }, [getMealsWithDaysHandler]);
+
+  const updateMealsWithDaysHandler = () => {
+    setIsLoading(true);
+    setError(null);
+    get('/meals/meals-with-days').then((res) => {
+      setMeals(res.data.data);
+      getIngredientsHandler();
+    });
+    setIsLoading(false);
   };
 
-  getMealIngredientsHandler = () => {
-    get('/meals/meal-ingredients').then((res) => {
-      this.setState({
-        ingredients: res.data.data,
-      });
+  //Delete meal
+  const deleteMealHandler = (id) => {
+    setIsLoading(true);
+    setError(null);
+    remove(`/meals/${id}`).then((res) => {
+      updateMealsWithDaysHandler();
+      getIngredientsHandler();
+      console.log(res);
     });
+    setIsLoading(false);
   };
 
-  getTagsHandler = () => {
-    get('/tags').then((res) => {
-      this.setState({
-        tags: res.data.data,
-      });
-    });
-  };
+  return (
+    <Planner
+      days={days}
+      meals={meals}
+      ingredients={mealIngredients}
+      error={error}
+      toggleModal={toggleModalHandler}
+      loading={isLoading}
+      visible={visible}
+      selectedMeal={selectedMeal}
+      selectMeal={selectMeal}
+      getMealsWithDays={getMealsWithDaysHandler}
+      updateMeals={updateMealsWithDaysHandler}
+      deleteMeal={deleteMealHandler}
+    />
+  );
+};
 
-  getUnitTypesHandler = () => {
-    get('/unit-types').then((res) => {
-      this.setState({
-        unitTypes: res.data.data,
-      });
-    });
-  };
-  //FIXME: use redux or similar to handle state globally?
-  toggleModalHandler = () => {
-    this.setState((prevState) => {
-      return { visible: !prevState.visible };
-    });
-  };
-
-  componentDidMount() {
-    this.getMealsWithDaysHandler();
-    this.getMealIngredientsHandler();
-    this.getTagsHandler();
-    this.getUnitTypesHandler();
-  }
-
-  render() {
-    return (
-      <Planner
-        data={this.state}
-        getUnitType={this.getUnitTypesHandler}
-        getTags={this.getTagsHandler}
-        toggleModal={this.toggleModalHandler}
-      />
-    );
-  }
-}
+export default PlannerMeals;

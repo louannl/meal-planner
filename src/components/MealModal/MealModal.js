@@ -1,10 +1,10 @@
-import React, { useContext, useState } from 'react';
-import { Modal, Button, Form, Input } from 'antd';
+import React, { useState } from 'react';
+import { Modal, Button, Form } from 'antd';
 
 import FormIngredients from './FormIngredients';
 import FormDays from './FormDays';
 import FormTags from './FormTags';
-import MealContext from '../../store/meal-context';
+import FormMealName from './FormMealName';
 
 const layout = {
   labelCol: { span: 8 },
@@ -12,21 +12,45 @@ const layout = {
 };
 
 const MealModal = (props) => {
-  const mealCtx = useContext(MealContext);
+  const [requiredMark, setRequiredMarkType] = useState('optional');
+
+  const onRequiredTypeChange = ({ requiredMarkValue }) => {
+    setRequiredMarkType(requiredMarkValue);
+  };
+
+  const {
+    visible,
+    loading,
+    tags,
+    days,
+    units,
+    editMode,
+    defaultValues,
+    error,
+    toggleModal,
+    createMeal,
+    editMeal,
+    mealId,
+  } = props;
+
+  let { mealDays, mealName, mealTags, mealIngredients } = defaultValues;
+  //TODO: Fix Defaults as they don't seem to validate when editing
+  const [form] = Form.useForm();
+
+  const clearForm = () => {
+    form.resetFields();
+  };
+
+  if (defaultValues === []) {
+    form.resetFields();
+  }
 
   const onCreate = (values) => {
-    //TODO: Call Put/Post method
+    //TODO: Handle Okay and errors and refresh
     console.log('Received values of form: ', values);
-    mealCtx.createMeal(values);
-    // setVisible(false);
+    createMeal(values);
+    toggleModal();
   };
-
-  const onEdit = (values) => {
-    console.log('Received values of form: ', values);
-    mealCtx.editMeal(values);
-  };
-
-  const [form] = Form.useForm();
 
   const handleOk = () => {
     form
@@ -40,34 +64,47 @@ const MealModal = (props) => {
       });
   };
 
-  const clearForm = () => {
-    form.resetFields();
+  const onEdit = (values) => {
+    const meal = {
+      mealName: values.mealName,
+      dayIds: values.dayIds,
+      mealTags: values.mealTags,
+      ingredients: values.ingredients.map((ingredient) => {
+        return {
+          name: ingredient.name,
+          amount: ingredient.amount,
+          unitType: ingredient.unitId,
+        };
+      }),
+    };
+    editMeal(meal, mealId);
   };
 
   const handleEdit = () => {
     form
       .validateFields()
-      .then((values, id) => {
-        //close model?
-        onEdit(values, id);
+      .then((values) => {
+        //TODO: POPUP?
+        onEdit(values);
       })
       .catch((info) => {
         console.log('Validate Failed:', info);
       });
   };
 
+  const handleCancel = () => {
+    clearForm();
+    toggleModal();
+  };
+
   const onFinish = (values) => {
     console.log('Received values of form:', values);
   };
 
-  const [requiredMark, setRequiredMarkType] = useState('optional');
-
-  const onRequiredTypeChange = ({ requiredMarkValue }) => {
-    setRequiredMarkType(requiredMarkValue);
-  };
+  let ModalTitle = 'Add Meal';
 
   let submitBtn = (
-    <>
+    <React.Fragment>
       <Button danger onClick={clearForm}>
         Clear
       </Button>
@@ -80,64 +117,71 @@ const MealModal = (props) => {
       >
         Create
       </Button>
-    </>
+    </React.Fragment>
   );
 
-  if (mealCtx.default.meal.submit === 'edit') {
+  if (editMode) {
+    ModalTitle = 'Edit Meal';
     submitBtn = (
-      <Button
-        form="mealForm"
-        key="submit"
-        htmlType="submit"
-        type="primary"
-        onClick={handleEdit}
-      >
-        Edit
-      </Button>
+      <React.Fragment>
+        <Button danger onClick={clearForm}>
+          Clear
+        </Button>
+        <Button
+          form="mealForm"
+          key="submit"
+          htmlType="submit"
+          type="primary"
+          onClick={handleEdit}
+        >
+          Edit
+        </Button>
+      </React.Fragment>
+    );
+  }
+
+  if (loading) {
+    return (
+      <Modal
+        title="Loading"
+        visible={visible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      ></Modal>
     );
   }
 
   return (
-    <>
-      <Modal
-        title="Add Meal"
-        visible={props.visible}
-        onOk={handleOk}
-        onCancel={props.toggleModal}
-        footer={[
-          <Button key="back" onClick={props.toggleModal}>
-            Cancel
-          </Button>,
-          submitBtn,
-        ]}
+    <Modal
+      title={ModalTitle}
+      visible={visible}
+      onOk={handleOk}
+      onCancel={handleCancel}
+      footer={[
+        <Button key="back" onClick={handleCancel}>
+          Cancel
+        </Button>,
+        submitBtn,
+      ]}
+    >
+      <Form
+        id="mealForm"
+        form={form}
+        name="Edit_Meal_Item"
+        {...layout}
+        onFinish={onFinish}
+        initialValues={{
+          requiredMarkValue: requiredMark,
+        }}
+        onValuesChange={onRequiredTypeChange}
+        requiredMark={requiredMark}
       >
-        <Form
-          id="mealForm"
-          form={form}
-          name="Edit_Meal_Item"
-          {...layout}
-          onFinish={onFinish}
-          initialValues={{
-            requiredMarkValue: requiredMark,
-          }}
-          onValuesChange={onRequiredTypeChange}
-          requiredMark={requiredMark}
-        >
-          <FormDays data={props.days} />
-          <Form.Item
-            label="Meal Name"
-            name="mealName"
-            required
-            tooltip="This is a required field"
-            rules={[{ required: true, message: 'Please enter a name' }]}
-          >
-            <Input defaultValue={mealCtx.default.meal.mealName} />
-          </Form.Item>
-          <FormTags tags={props.tags} />
-          <FormIngredients data={props.unitTypes} />
-        </Form>
-      </Modal>
-    </>
+        <FormDays data={days} default={mealDays} />
+        <FormMealName default={mealName} />
+        <FormTags tags={tags} default={mealTags} />
+        <FormIngredients data={units} default={mealIngredients} />
+      </Form>
+    </Modal>
   );
 };
 

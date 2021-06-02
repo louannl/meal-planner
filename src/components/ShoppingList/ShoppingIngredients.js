@@ -1,17 +1,17 @@
-import React from 'react';
-import { Checkbox, Divider } from 'antd';
+import React, { useState } from 'react';
+import { Checkbox, Divider, Skeleton } from 'antd';
 
 const CheckboxGroup = Checkbox.Group;
 
 const ShoppingIngredients = (props) => {
-  const plainOptions = props.data.map((ingredients) => {
+  const plainOptions = props.listItems.map((ingredients) => {
     return `${ingredients.ingredient} ${ingredients.total} ${ingredients.unit}`;
   });
   const defaultCheckedList = [];
 
-  const [checkedList, setCheckedList] = React.useState(defaultCheckedList);
-  const [indeterminate, setIndeterminate] = React.useState(true);
-  const [checkAll, setCheckAll] = React.useState(false);
+  const [checkedList, setCheckedList] = useState(defaultCheckedList);
+  const [indeterminate, setIndeterminate] = useState(true);
+  const [checkAll, setCheckAll] = useState(false);
 
   const onChange = (list) => {
     setCheckedList(list);
@@ -24,9 +24,9 @@ const ShoppingIngredients = (props) => {
     setIndeterminate(false);
     setCheckAll(e.target.checked);
   };
-  // FIXME: CheckBox group doesn't have much space around it
-  return (
-    <>
+
+  let content = (
+    <React.Fragment>
       <Checkbox
         indeterminate={indeterminate}
         onChange={onCheckAllChange}
@@ -40,8 +40,15 @@ const ShoppingIngredients = (props) => {
         value={checkedList}
         onChange={onChange}
       />
-    </>
+    </React.Fragment>
   );
+
+  if (props.isLoading) {
+    content = <Skeleton active />;
+  }
+
+  // FIXME: CheckBox group doesn't have much space around it
+  return <React.Fragment>{content}</React.Fragment>;
 };
 
 export default ShoppingIngredients;
