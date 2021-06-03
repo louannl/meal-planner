@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { get, remove } from '../../api/axios';
 import Planner from '../../components/Planner/Planner';
+import { errorToast, successToast } from '../../components/UI/toast';
 
 const PlannerMeals = () => {
   const [visible, setVisible] = useState(false);
@@ -63,11 +64,15 @@ const PlannerMeals = () => {
   const deleteMealHandler = (id, dayId) => {
     setIsLoading(true);
     setError(null);
-    remove(`/meals/${id}/${dayId}`).then((res) => {
-      updateMealsWithDaysHandler();
-      getIngredientsHandler();
-      console.log(res);
-    });
+    remove(`/meals/${id}/${dayId}`)
+      .then((res) => {
+        updateMealsWithDaysHandler();
+        getIngredientsHandler();
+        successToast('Deleted meal');
+      })
+      .catch((err) => {
+        errorToast('Failed to delete meal');
+      });
     setIsLoading(false);
   };
 

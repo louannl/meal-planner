@@ -5,7 +5,7 @@ import { CloseOutlined } from '@ant-design/icons';
 
 const MealItems = (props) => {
   const handleMeal = async (id) => {
-    //TODO: Why does this only work if asynchronous
+    //IMPROVEMENT: Why does this only work if asynchronous?
     await props.selectMeal(id);
     await props.toggleModal();
   };

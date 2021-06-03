@@ -13,7 +13,7 @@ const Modal = (props) => {
   const [editMode, setEditMode] = useState(false);
   //FIXME: Make a portal for the modal
 
-  //TODO: Add Selectors for ingredients
+  //IMPROVEMENT: Add Selectors for ingredients
   const { days, mealId } = props;
 
   const getSelectors = useCallback(async () => {
@@ -25,7 +25,7 @@ const Modal = (props) => {
     await Promise.all([
       get('/tags').then((res) => {
         setSelectTags(res.data.data);
-        //FIXME: Handle new tags/deletion of old tags
+        //IMPROVEMENT: Handle new tags/deletion of old tags
       }),
       get('/unit-types').then((res) => {
         setSelectUnits(res.data.data);
@@ -72,7 +72,6 @@ const Modal = (props) => {
       })
       .catch((err) => {
         errorToast('Failed to create meal');
-        //TODO: Handler error
       });
   };
 

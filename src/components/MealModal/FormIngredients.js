@@ -21,6 +21,7 @@ const FormIngredients = (props) => {
       };
     });
   }
+  //IMPROVEMENT: Can I make this less nested or divvy it up?
 
   return (
     <Form.List name="ingredients" initialValue={defaultIngredients}>

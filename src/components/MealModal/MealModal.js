@@ -34,7 +34,7 @@ const MealModal = (props) => {
   } = props;
 
   let { mealDays, mealName, mealTags, mealIngredients } = defaultValues;
-  //TODO: Fix Defaults as they don't seem to validate when editing
+
   const [form] = Form.useForm();
 
   const clearForm = () => {
@@ -46,7 +46,6 @@ const MealModal = (props) => {
   }
 
   const onCreate = (values) => {
-    //TODO: Handle Okay and errors and refresh
     const meal = {
       mealName: values.mealName,
       dayIds: values.dayIds,
@@ -88,7 +87,7 @@ const MealModal = (props) => {
         };
       }),
     };
-    //FIXME: BackEnd doesn't take in non integers!
+    //FIXME: BackEnd doesn't take in non-integers
     editMeal(meal, mealId);
     toggleModal();
   };
@@ -97,10 +96,10 @@ const MealModal = (props) => {
     form
       .validateFields()
       .then((values) => {
-        //TODO: POPUP?
         onEdit(values);
       })
       .catch((info) => {
+        //TODO: Handle
         console.log('Validate Failed:', info);
       });
   };
