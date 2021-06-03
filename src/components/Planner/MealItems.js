@@ -1,7 +1,8 @@
 import React from 'react';
-import { List } from 'antd';
+import { Button, List } from 'antd';
 import MealTags from './MealTags';
-import { CloseOutlined } from '@ant-design/icons';
+import { MinusOutlined } from '@ant-design/icons';
+import '../UI/ListItem.css';
 
 const MealItems = (props) => {
   const handleMeal = async (id) => {
@@ -20,12 +21,10 @@ const MealItems = (props) => {
             value={meal?.id}
             key={meal?.meal}
             extra={
-              <div
-                style={{ cursor: 'pointer' }}
+              <Button
+                icon={<MinusOutlined />}
                 onClick={() => props.deleteMeal(meal?.id, props.dayId)}
-              >
-                <CloseOutlined />
-              </div>
+              />
             }
           >
             <List.Item.Meta

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Checkbox, Col, Divider, Row, Skeleton } from 'antd';
+import { Card, Checkbox, Col, Row } from 'antd';
 
 const CheckboxGroup = Checkbox.Group;
 
@@ -20,8 +20,10 @@ const ShoppingIngredients = (props) => {
       text = `${ingredients.total} ${ingredients.ingredient}`;
     }
     return (
-      <Col span={8}>
-        <Checkbox value={ingredients.ingredient}>{text}</Checkbox>
+      <Col xs={24} sm={12} md={24} lg={12} xl={8}>
+        <Checkbox style={{ width: '100%' }} value={ingredients.ingredient}>
+          {text}
+        </Checkbox>
       </Col>
     );
   });
@@ -38,31 +40,24 @@ const ShoppingIngredients = (props) => {
     setCheckAll(e.target.checked);
   };
 
-  let content = (
-    <React.Fragment>
-      <Checkbox
-        indeterminate={indeterminate}
-        onChange={onCheckAllChange}
-        checked={checkAll}
-      >
-        Check all
-      </Checkbox>
-      <Divider />
-      <CheckboxGroup
-        value={checkedList}
-        onChange={onChange}
-        style={{ width: '100%' }}
-      >
+  return (
+    <Card
+      loading={props.loading}
+      title={
+        <Checkbox
+          indeterminate={indeterminate}
+          onChange={onCheckAllChange}
+          checked={checkAll}
+        >
+          Check all
+        </Checkbox>
+      }
+    >
+      <CheckboxGroup value={checkedList} onChange={onChange}>
         <Row gutter={[16, 24]}>{ingredientList}</Row>
       </CheckboxGroup>
-    </React.Fragment>
+    </Card>
   );
-
-  if (props.loading) {
-    content = <Skeleton active />;
-  }
-
-  return <React.Fragment>{content}</React.Fragment>;
 };
 
 export default ShoppingIngredients;
