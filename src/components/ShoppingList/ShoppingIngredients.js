@@ -1,17 +1,30 @@
 import React, { useState } from 'react';
-import { Checkbox, Divider, Skeleton } from 'antd';
+import { Checkbox, Col, Divider, Row, Skeleton } from 'antd';
 
 const CheckboxGroup = Checkbox.Group;
 
 const ShoppingIngredients = (props) => {
-  const plainOptions = props.listItems.map((ingredients) => {
-    return `${ingredients.total} ${ingredients.unit} ${ingredients.ingredient}`;
-  });
   const defaultCheckedList = [];
 
   const [checkedList, setCheckedList] = useState(defaultCheckedList);
   const [indeterminate, setIndeterminate] = useState(true);
   const [checkAll, setCheckAll] = useState(false);
+
+  const plainOptions = props.listItems.map((ingredients) => {
+    return ingredients.ingredient;
+  });
+
+  const ingredientList = props.listItems.map((ingredients) => {
+    let text = `${ingredients.total} ${ingredients.unit} of ${ingredients.ingredient}`;
+    if (ingredients.unit === 'Amount') {
+      text = `${ingredients.total} ${ingredients.ingredient}`;
+    }
+    return (
+      <Col span={8}>
+        <Checkbox value={ingredients.ingredient}>{text}</Checkbox>
+      </Col>
+    );
+  });
 
   const onChange = (list) => {
     setCheckedList(list);
@@ -36,11 +49,12 @@ const ShoppingIngredients = (props) => {
       </Checkbox>
       <Divider />
       <CheckboxGroup
-        options={plainOptions}
         value={checkedList}
         onChange={onChange}
         style={{ width: '100%' }}
-      />
+      >
+        <Row gutter={[16, 24]}>{ingredientList}</Row>
+      </CheckboxGroup>
     </React.Fragment>
   );
 
@@ -48,7 +62,6 @@ const ShoppingIngredients = (props) => {
     content = <Skeleton active />;
   }
 
-  // FIXME: CheckBox group doesn't have much space around it
   return <React.Fragment>{content}</React.Fragment>;
 };
 

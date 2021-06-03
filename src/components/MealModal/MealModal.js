@@ -26,7 +26,7 @@ const MealModal = (props) => {
     units,
     editMode,
     defaultValues,
-    error,
+    //TODO: Handle error,
     toggleModal,
     createMeal,
     editMeal,
@@ -88,6 +88,7 @@ const MealModal = (props) => {
         };
       }),
     };
+    //FIXME: BackEnd doesn't take in non integers!
     editMeal(meal, mealId);
     toggleModal();
   };

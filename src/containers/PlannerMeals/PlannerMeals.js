@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { get, remove } from '../../api/axios';
 import Planner from '../../components/Planner/Planner';
 
-//FIXME: do not need to use class based components in react 16.8+
 const PlannerMeals = () => {
   const [visible, setVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -62,7 +61,6 @@ const PlannerMeals = () => {
     setIsLoading(false);
   };
 
-  //Delete meal
   const deleteMealHandler = (id, dayId) => {
     setIsLoading(true);
     setError(null);

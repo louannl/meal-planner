@@ -13,13 +13,11 @@ const FormIngredients = (props) => {
 
   let defaultIngredients = [];
   if (props.default) {
-    console.log('ingredients', props);
     defaultIngredients = props.default.map((ing) => {
       return {
         name: ing.ingredient,
         amount: ing.amount,
         unitType: ing.id,
-        // unitId: ing.id,
       };
     });
   }
