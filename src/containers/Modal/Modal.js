@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { get, post, put } from '../../api/axios';
 import MealModal from '../../components/MealModal/MealModal';
+import { successToast, errorToast } from '../../components/UI/toast';
 
 const Modal = (props) => {
   const [loading, setIsLoading] = useState(true);
@@ -24,6 +25,7 @@ const Modal = (props) => {
     await Promise.all([
       get('/tags').then((res) => {
         setSelectTags(res.data.data);
+        //FIXME: Handle new tags/deletion of old tags
       }),
       get('/unit-types').then((res) => {
         setSelectUnits(res.data.data);
@@ -63,19 +65,26 @@ const Modal = (props) => {
   }, [getDefaultValues]);
 
   const createMealHandler = (meal) => {
-    post('/meals', meal).then((res) => {
-      //FIXME: Handler response and error
-      console.log(res);
-      props.updateMeals();
-    });
+    post('/meals', meal)
+      .then((res) => {
+        successToast('Created meal');
+        props.updateMeals();
+      })
+      .catch((err) => {
+        errorToast('Failed to create meal');
+        //TODO: Handler error
+      });
   };
 
   const editMealHandler = (meal, id) => {
-    put(`/meals/${id}`, meal).then((res) => {
-      //FIXME: Handler response and error
-      console.log(res);
-      props.updateMeals();
-    });
+    put(`/meals/${id}`, meal)
+      .then((res) => {
+        successToast('Edited meal');
+        props.updateMeals();
+      })
+      .catch((err) => {
+        errorToast('Failed to edit meal');
+      });
   };
 
   return (

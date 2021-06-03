@@ -10,7 +10,6 @@ const PlannerMeals = () => {
   const [days, setDays] = useState([]);
   const [selectedMeal, setSelectedMeal] = useState('');
   const [mealIngredients, setMealIngredients] = useState([]);
-  //TODO: Move ingredients here so we can run them both
 
   const getIngredientsHandler = useCallback(async () => {
     setIsLoading(true);
