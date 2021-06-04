@@ -42,6 +42,7 @@ const ShoppingIngredients = (props) => {
 
   return (
     <Card
+      hoverable
       loading={props.loading}
       title={
         <Checkbox

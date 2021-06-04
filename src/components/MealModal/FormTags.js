@@ -5,32 +5,32 @@ import { PlusOutlined } from '@ant-design/icons';
 const { Option } = Select;
 
 const FormTags = (props) => {
+  const mealTags = props.tags.map((tag) => {
+    return tag.name;
+  });
+
   const [mealTagState, setMealTagState] = useState({
-    items: [''],
+    items: mealTags,
     name: '',
   });
 
   const onNameChange = (event) => {
-    const { items } = mealTagState;
     setMealTagState({
+      ...mealTagState,
       name: event.target.value,
-      items,
     });
   };
 
   const addItem = () => {
     const { items, name } = mealTagState;
+    if (!name) {
+      return;
+    }
     setMealTagState({
-      items: [...items, name || 'New item'],
+      items: [...items, name],
       name: '',
     });
   };
-
-  const TagOptions = props.tags.map((tag) => (
-    <Option value={tag.name} key={tag}>
-      {tag.name}
-    </Option>
-  ));
 
   let defaultTags = [];
 
@@ -75,7 +75,9 @@ const FormTags = (props) => {
           </div>
         )}
       >
-        {TagOptions}
+        {mealTagState.items.map((tag) => (
+          <Option key={tag}>{tag}</Option>
+        ))}
       </Select>
     </Form.Item>
   );

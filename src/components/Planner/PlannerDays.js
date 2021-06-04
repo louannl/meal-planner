@@ -30,6 +30,7 @@ const PlannerDays = (props) => {
           return (
             <List.Item>
               <Card
+                hoverable
                 loading={props.loading}
                 title={day.name}
                 extra={

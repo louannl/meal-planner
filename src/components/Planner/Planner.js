@@ -44,7 +44,7 @@ const Planner = (props) => {
         </Row>
       </Content>
       <Footer style={{ textAlign: 'center' }}>
-        Ant Design ©2021 Created by Louann Loizou
+        ©2021 Created by Louann Loizou using Ant Design
       </Footer>
     </Layout>
   );
