@@ -5,6 +5,13 @@ import { PlusOutlined, MinusCircleOutlined } from '@ant-design/icons';
 // const { Option } = Select;
 const InputGroup = Input.Group;
 
+const wrapperLayout = {
+  wrapperCol: {
+    xs: { offset: 0 },
+    sm: { offset: 8 },
+  },
+};
+
 const FormIngredients = (props) => {
   const unitTypes = [];
   props.data.forEach((unit) => {
@@ -83,7 +90,7 @@ const FormIngredients = (props) => {
               );
             })}
 
-            <Form.Item wrapperCol={{ offset: 8 }}>
+            <Form.Item {...wrapperLayout}>
               <Button
                 type="dashed"
                 onClick={() => add()}

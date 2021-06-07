@@ -3,9 +3,10 @@
 }
 
 /* BREAKPOINTS
-  576px xs
-  768px sm
-  992px md
-  1200px lg
-  1600px xl
+  xs: '480px',
+  sm: '576px',
+  md: '768px',
+  lg: '992px',
+  xl: '1200px',
+  xxl: '1600px',
 */

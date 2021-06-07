@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col } from 'antd';
+import { Row, Col, BackTop } from 'antd';
 
 import styles from './Planner.module.css';
 import PlannerDays from './PlannerDays';
@@ -11,13 +11,13 @@ import PlannerMenu from './PlannerMenu';
 const Planner = (props) => {
   return (
     <Layout>
-      <Header>
+      <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
         <PlannerMenu
           selectMeal={props.selectMeal}
           toggleModal={props.toggleModal}
         />
       </Header>
-      <Content>
+      <Content style={{ marginTop: 64 }}>
         <Row gutter={[8, 8]} className={styles.planner}>
           <Modal
             visible={props.visible}
@@ -44,6 +44,7 @@ const Planner = (props) => {
             />
           </Col>
         </Row>
+        <BackTop />
       </Content>
       <Footer style={{ textAlign: 'center' }}>
         ©2021 Created by Louann Loizou using Ant Design

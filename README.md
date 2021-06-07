@@ -15,21 +15,17 @@
 
 ## Todo
 - Confirm deletion before deleting meal
-- Change shopping list to be top to bottom in a single row (maybe change font size) (also to be titled 'shoppinglist')
-- List known bugs / improvements
 - Roadmap on readme
 - Change Nav Bar colour
-- Change top of cards to have a slightly different colour to be easily distinguished
-- Edit button on individual meals
-- Top of modal to be different colour
-- Change delete button to be smaller 
+- Top of modal to be different colour (can't seem to do without amending antd)
 - Remove clear button from edit (doesn't work anyway)
 - sort out icon/logo
-- create portfolio website
+- start portfolio website - add images of website to it
 
-## comments
-- MealModal was rendered seven times on refresh/initialisation due to the model being rendered for each meal-planner day
-Fixed: Replaced with a button that changes the state 'visibile' instead. At current this goes through a few layers so may make it less flexible.
+## Notable issues when creating the planner
+- MealModal was rendered seven times on refresh/initialisation due to the modal being rendered on each day card.
+Fixed: Replaced with a button that changes the state 'visibile' instead. 
+Additional Point: I since moved add meal to another part of the website, however the change above has still been helpful when making the modal visibile from different parts of the website, i.e. edit meal and add meal.
 
 
 

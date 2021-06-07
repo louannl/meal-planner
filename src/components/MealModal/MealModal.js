@@ -7,8 +7,14 @@ import FormTags from './FormTags';
 import FormMealName from './FormMealName';
 
 const layout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 16 },
+  labelCol: {
+    xs: { span: 0 },
+    sm: { span: 8 },
+  },
+  wrapperCol: {
+    xs: { span: 24 },
+    sm: { span: 16 },
+  },
 };
 
 const MealModal = (props) => {
@@ -192,7 +198,11 @@ const MealModal = (props) => {
         <FormDays data={days} default={mealDays} />
         <FormMealName default={mealName} />
         <FormTags tags={tags} default={mealTags} />
-        <FormIngredients data={units} default={mealIngredients} />
+        <FormIngredients
+          data={units}
+          default={mealIngredients}
+          itemLayout={layout}
+        />
       </Form>
     </Modal>
   );
