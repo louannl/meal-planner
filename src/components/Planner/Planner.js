@@ -1,19 +1,21 @@
 import React from 'react';
-import { Row, Col, Menu } from 'antd';
+import { Row, Col } from 'antd';
 
 import styles from './Planner.module.css';
 import PlannerDays from './PlannerDays';
 import Modal from '../../containers/Modal/Modal';
 import ShoppingIngredients from '../ShoppingList/ShoppingIngredients';
 import Layout, { Content, Footer, Header } from 'antd/lib/layout/layout';
+import PlannerMenu from './PlannerMenu';
 
 const Planner = (props) => {
   return (
     <Layout>
       <Header>
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
-          <Menu.Item key="1">Meal Planner</Menu.Item>
-        </Menu>
+        <PlannerMenu
+          selectMeal={props.selectMeal}
+          toggleModal={props.toggleModal}
+        />
       </Header>
       <Content>
         <Row gutter={[8, 8]} className={styles.planner}>

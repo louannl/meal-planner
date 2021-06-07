@@ -1,17 +1,31 @@
 # Meal Planner
 
-## check out context api
+## BUGS AND IMPROVEMENTS
+# Bugs
+- When clicking edit, ingredient items pre-filled using antd 'initialValues' automatically include 'optional'
 
-## File structure notes
+## Improvements
+*Non-core Functionality*
+- Authentication (this will include using redux or context)
+- Add functionality to allow the starting day to be selected
+- Pop-up confirm deletion of meal and option to delete all meals or meal (even on different days)
 
-1. Assets: This folder contains all the media, such as images, videos, json files etc. 
-2. Components: This folder contains all the presentational/stateless components 
-3. Container: Contains all the stateful components
-4. Hoc: Higher order components: special types of components which wrap conventional features
-5. Store: Stores global state (react-redux)
+*Nice to haves*
+- Change 'No data' icon to say no meals/ingredients and to have a different icon suited to meals
 
 ## Todo
-- change icon
+- Move Add Button off Day Cards
+- Change shopping list to be top to bottom in a single row (maybe change font size) (also to be titled 'shoppinglist')
+- List known bugs / improvements
+- Roadmap on readme
+- Change Nav Bar colour
+- Change top of cards to have a slightly different colour to be easily distinguished
+- Edit button on individual meals
+- Top of modal to be different colour
+- Change delete button to be smaller 
+- Remove clear button from edit (doesn't work anyway)
+- sort out icon/logo
+- create portfolio website
 
 ## comments
 - MealModal was rendered seven times on refresh/initialisation due to the model being rendered for each meal-planner day

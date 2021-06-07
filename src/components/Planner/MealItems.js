@@ -22,6 +22,8 @@ const MealItems = (props) => {
             key={meal?.meal}
             extra={
               <Button
+                danger
+                size="small"
                 icon={<MinusOutlined />}
                 onClick={() => props.deleteMeal(meal?.id, props.dayId)}
               />

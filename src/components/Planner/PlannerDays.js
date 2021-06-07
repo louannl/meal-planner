@@ -8,11 +8,6 @@ const PlannerDays = (props) => {
     return <Skeleton active />;
   }
 
-  const handleNewMeal = async () => {
-    await props.selectMeal();
-    await props.toggleModal();
-  };
-
   return (
     <div className="week">
       <List
@@ -29,18 +24,7 @@ const PlannerDays = (props) => {
         renderItem={(day) => {
           return (
             <List.Item>
-              <Card
-                hoverable
-                loading={props.loading}
-                title={day.name}
-                extra={
-                  <Button
-                    icon={<PlusOutlined />}
-                    type="primary"
-                    onClick={handleNewMeal}
-                  />
-                }
-              >
+              <Card hoverable loading={props.loading} title={day.name}>
                 <MealItems
                   meals={day?.meals}
                   dayId={day?.id}

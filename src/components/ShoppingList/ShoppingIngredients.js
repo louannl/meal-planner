@@ -20,7 +20,7 @@ const ShoppingIngredients = (props) => {
       text = `${ingredients.total} ${ingredients.ingredient}`;
     }
     return (
-      <Col xs={24} sm={12} md={24} lg={12} xl={8}>
+      <Col xs={24} sm={24} md={24} lg={24} xl={24}>
         <Checkbox style={{ width: '100%' }} value={ingredients.ingredient}>
           {text}
         </Checkbox>
