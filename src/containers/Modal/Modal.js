@@ -25,7 +25,6 @@ const Modal = (props) => {
     await Promise.all([
       get('/tags').then((res) => {
         setSelectTags(res.data.data);
-        //IMPROVEMENT: Handle new tags/deletion of old tags
       }),
       get('/unit-types').then((res) => {
         setSelectUnits(res.data.data);
@@ -41,6 +40,7 @@ const Modal = (props) => {
   const getDefaultValues = useCallback(() => {
     setIsLoading(true);
     setError(null);
+
     if (!mealId) {
       setEditMode(false);
       setDefaults('');
@@ -49,15 +49,20 @@ const Modal = (props) => {
     }
 
     setEditMode(true);
-    get(`/meals/${mealId}`).then((res) => {
-      setDefaults({
-        mealDays: res.data.data.days,
-        mealName: res.data.data.meal,
-        mealTags: res.data.data.tags,
-        mealIngredients: res.data.data.ingredients,
+    get(`/meals/${mealId}`)
+      .then((res) => {
+        setDefaults({
+          mealDays: res.data.data.days,
+          mealName: res.data.data.meal,
+          mealTags: res.data.data.tags,
+          mealIngredients: res.data.data.ingredients,
+        });
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        errorToast('Failed to fetch meal data');
+        setError(err.response);
       });
-      setIsLoading(false);
-    });
   }, [mealId]);
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, Button, Form } from 'antd';
+import { Modal, Button, Form, Spin } from 'antd';
 
 import FormIngredients from './FormIngredients';
 import FormDays from './FormDays';
@@ -32,7 +32,7 @@ const MealModal = (props) => {
     units,
     editMode,
     defaultValues,
-    //TODO: Handle error,
+    error,
     toggleModal,
     createMeal,
     editMeal,
@@ -119,6 +119,24 @@ const MealModal = (props) => {
     console.log('Received values of form:', values);
   };
 
+  if (error) {
+    let errorMessage = 'A server side error has occurred';
+    if (`${error.status}`.startsWith('4')) {
+      console.log('true');
+      errorMessage = `Failed: ${error.data.message}`;
+    }
+    return (
+      <Modal
+        title="An Error has occurred..."
+        visible={visible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <p>{errorMessage}</p>
+      </Modal>
+    );
+  }
+
   let ModalTitle = 'Add Meal';
 
   let submitBtn = (
@@ -155,17 +173,6 @@ const MealModal = (props) => {
     );
   }
 
-  if (loading) {
-    return (
-      <Modal
-        title="Loading"
-        visible={visible}
-        onOk={handleOk}
-        onCancel={handleCancel}
-      ></Modal>
-    );
-  }
-
   return (
     <Modal
       title={ModalTitle}
@@ -179,28 +186,32 @@ const MealModal = (props) => {
         submitBtn,
       ]}
     >
-      <Form
-        id="mealForm"
-        form={form}
-        name="Edit_Meal_Item"
-        {...layout}
-        //FIXME: DO I NEED onFinish?
-        onFinish={onFinish}
-        initialValues={{
-          requiredMarkValue: requiredMark,
-        }}
-        onValuesChange={onRequiredTypeChange}
-        requiredMark={requiredMark}
-      >
-        <FormDays data={days} default={mealDays} />
-        <FormMealName default={mealName} />
-        <FormTags tags={tags} default={mealTags} />
-        <FormIngredients
-          data={units}
-          default={mealIngredients}
-          itemLayout={layout}
-        />
-      </Form>
+      {loading ? (
+        <Spin tip="Loading" />
+      ) : (
+        <Form
+          id="mealForm"
+          form={form}
+          name="Edit_Meal_Item"
+          {...layout}
+          //FIXME: DO I NEED onFinish?
+          onFinish={onFinish}
+          initialValues={{
+            requiredMarkValue: requiredMark,
+          }}
+          onValuesChange={onRequiredTypeChange}
+          requiredMark={requiredMark}
+        >
+          <FormDays data={days} default={mealDays} />
+          <FormMealName default={mealName} />
+          <FormTags tags={tags} default={mealTags} />
+          <FormIngredients
+            data={units}
+            default={mealIngredients}
+            itemLayout={layout}
+          />
+        </Form>
+      )}
     </Modal>
   );
 };

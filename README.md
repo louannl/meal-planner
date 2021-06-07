@@ -13,14 +13,19 @@
 *Nice to haves*
 - Change 'No data' icon to say no meals/ingredients and to have a different icon suited to meals
 
-## Todo
-- handle errors on modal
+## To-do
+- Test errors on modal
+- Remove ingredients title on formIngredients
 - Confirm deletion before deleting meal
-- Roadmap on readme
+- Sort out icon/logo
+- Delete tags/edit tags
+- Get/Delete ingredients already in database
+- Start portfolio website - add images of website to it
+  
+*Not a priority*
 - Change Nav Bar colour
 - Top of modal to be different colour (can't seem to do without amending antd)
-- sort out icon/logo
-- start portfolio website - add images of website to it
+
 
 ## Notable issues when creating the planner
 - MealModal was rendered seven times on refresh/initialisation due to the modal being rendered on each day card.
