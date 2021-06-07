@@ -14,11 +14,11 @@
 - Change 'No data' icon to say no meals/ingredients and to have a different icon suited to meals
 
 ## Todo
+- handle errors on modal
 - Confirm deletion before deleting meal
 - Roadmap on readme
 - Change Nav Bar colour
 - Top of modal to be different colour (can't seem to do without amending antd)
-- Remove clear button from edit (doesn't work anyway)
 - sort out icon/logo
 - start portfolio website - add images of website to it
 

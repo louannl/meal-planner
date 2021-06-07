@@ -26,7 +26,7 @@ const Planner = (props) => {
             mealId={props.selectedMeal}
             updateMeals={props.updateMeals}
           />
-          <Col xs={24} sm={24} md={18} lg={18} xl={18}>
+          <Col xs={24} sm={24} md={16} lg={18} xl={18}>
             <PlannerDays
               loading={props.loading}
               meals={props.meals}
@@ -36,7 +36,7 @@ const Planner = (props) => {
               deleteMeal={props.deleteMeal}
             />
           </Col>
-          <Col xs={24} sm={24} md={6} lg={6} xl={6}>
+          <Col xs={24} sm={24} md={8} lg={6} xl={6}>
             <ShoppingIngredients
               listItems={props.ingredients}
               loading={props.loading}

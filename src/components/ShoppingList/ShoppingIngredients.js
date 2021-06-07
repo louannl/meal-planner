@@ -21,7 +21,10 @@ const ShoppingIngredients = (props) => {
     }
     return (
       <Col xs={24} sm={24} md={24} lg={24} xl={24}>
-        <Checkbox style={{ width: '100%' }} value={ingredients.ingredient}>
+        <Checkbox
+          style={{ width: '100%', textAlign: 'left' }}
+          value={ingredients.ingredient}
+        >
           {text}
         </Checkbox>
       </Col>

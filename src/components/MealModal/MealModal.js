@@ -142,9 +142,6 @@ const MealModal = (props) => {
     ModalTitle = 'Edit Meal';
     submitBtn = (
       <React.Fragment>
-        <Button danger onClick={clearForm}>
-          Clear
-        </Button>
         <Button
           form="mealForm"
           key="submit"
