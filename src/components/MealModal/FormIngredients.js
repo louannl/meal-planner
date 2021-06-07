@@ -1,16 +1,9 @@
 import React from 'react';
-import { Button, Form, Input, InputNumber, Select, Space } from 'antd';
+import { Button, Divider, Form, Input, InputNumber, Select, Space } from 'antd';
 import { PlusOutlined, MinusCircleOutlined } from '@ant-design/icons';
 
 // const { Option } = Select;
 const InputGroup = Input.Group;
-
-const wrapperLayout = {
-  wrapperCol: {
-    xs: { offset: 0 },
-    sm: { offset: 8 },
-  },
-};
 
 const FormIngredients = (props) => {
   const unitTypes = [];
@@ -31,22 +24,21 @@ const FormIngredients = (props) => {
   //IMPROVEMENT: Can I make this less nested or divvy it up?
 
   return (
-    <Form.List name="ingredients" initialValue={defaultIngredients}>
-      {(fields, { add, remove }) => {
-        return (
-          <React.Fragment>
-            {fields.map(({ key, name, fieldKey, ...restField }) => {
-              return (
-                <Space
-                  key={key}
-                  style={{
-                    display: 'flex',
-                    marginBottom: 8,
-                  }}
-                  align="baseline"
-                >
-                  <Form.Item label="Ingredient list">
-                    <InputGroup compact>
+    <React.Fragment>
+      <Divider>Ingredients</Divider>
+      <Form.List name="ingredients" initialValue={defaultIngredients}>
+        {(fields, { add, remove }) => {
+          return (
+            <React.Fragment>
+              {fields.map(({ key, name, fieldKey, ...restField }) => {
+                return (
+                  <Space
+                    key={key}
+                    style={{
+                      display: 'flex',
+                    }}
+                  >
+                    <InputGroup compact style={{ marginBottom: '24px' }}>
                       <Form.Item
                         noStyle
                         {...restField}
@@ -56,7 +48,10 @@ const FormIngredients = (props) => {
                           { required: true, message: 'Please enter a name' },
                         ]}
                       >
-                        <Input style={{ width: '50%' }} />
+                        <Input
+                          placeholder="Ingredient name"
+                          style={{ width: '45%' }}
+                        />
                       </Form.Item>
                       <Form.Item
                         noStyle
@@ -64,10 +59,16 @@ const FormIngredients = (props) => {
                         name={[name, 'amount']}
                         fieldKey={[fieldKey, 'amount']}
                         rules={[
-                          { required: true, message: 'Please enter an amount' },
+                          {
+                            required: true,
+                            message: 'Please enter an amount',
+                          },
                         ]}
                       >
-                        <InputNumber style={{ width: '30%' }} />
+                        <InputNumber
+                          placeholder="100"
+                          style={{ width: '25%' }}
+                        />
                       </Form.Item>
                       <Form.Item
                         noStyle
@@ -81,16 +82,29 @@ const FormIngredients = (props) => {
                           },
                         ]}
                       >
-                        <Select options={unitTypes} style={{ width: '20%' }} />
+                        <Select
+                          placeholder="g"
+                          options={unitTypes}
+                          style={{ width: '20%' }}
+                        />
+                      </Form.Item>
+                      <Form.Item style={{ marginBottom: '0px' }}>
+                        {fields.length > 0 ? (
+                          <MinusCircleOutlined
+                            style={{
+                              fontSize: '24px',
+                              width: '10%',
+                              marginLeft: '6px',
+                            }}
+                            onClick={() => remove(name)}
+                          />
+                        ) : null}
                       </Form.Item>
                     </InputGroup>
-                  </Form.Item>
-                  <MinusCircleOutlined onClick={() => remove(name)} />
-                </Space>
-              );
-            })}
+                  </Space>
+                );
+              })}
 
-            <Form.Item {...wrapperLayout}>
               <Button
                 type="dashed"
                 onClick={() => add()}
@@ -99,11 +113,11 @@ const FormIngredients = (props) => {
               >
                 Add Ingredient
               </Button>
-            </Form.Item>
-          </React.Fragment>
-        );
-      }}
-    </Form.List>
+            </React.Fragment>
+          );
+        }}
+      </Form.List>
+    </React.Fragment>
   );
 };
 

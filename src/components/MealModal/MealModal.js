@@ -9,10 +9,10 @@ import FormMealName from './FormMealName';
 const layout = {
   labelCol: {
     xs: { span: 0 },
-    sm: { span: 8 },
+    sm: { span: 6 },
   },
   wrapperCol: {
-    xs: { span: 24 },
+    xs: { span: 22 },
     sm: { span: 16 },
   },
 };
@@ -205,11 +205,7 @@ const MealModal = (props) => {
           <FormDays data={days} default={mealDays} />
           <FormMealName default={mealName} />
           <FormTags tags={tags} default={mealTags} />
-          <FormIngredients
-            data={units}
-            default={mealIngredients}
-            itemLayout={layout}
-          />
+          <FormIngredients data={units} default={mealIngredients} />
         </Form>
       )}
     </Modal>
