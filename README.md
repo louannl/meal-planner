@@ -14,7 +14,7 @@
 - Change 'No data' icon to say no meals/ingredients and to have a different icon suited to meals
 
 ## Todo
-- Move Add Button off Day Cards
+- Confirm deletion before deleting meal
 - Change shopping list to be top to bottom in a single row (maybe change font size) (also to be titled 'shoppinglist')
 - List known bugs / improvements
 - Roadmap on readme

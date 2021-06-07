@@ -42,9 +42,9 @@ const ShoppingIngredients = (props) => {
 
   return (
     <Card
-      hoverable
       loading={props.loading}
-      title={
+      title="Shopping List"
+      extra={
         <Checkbox
           indeterminate={indeterminate}
           onChange={onCheckAllChange}
@@ -53,6 +53,7 @@ const ShoppingIngredients = (props) => {
           Check all
         </Checkbox>
       }
+      headStyle={{ backgroundColor: '#fafafa' }}
     >
       <CheckboxGroup value={checkedList} onChange={onChange}>
         <Row gutter={[16, 24]}>{ingredientList}</Row>

@@ -1,8 +1,9 @@
 import React from 'react';
-import { Button, List } from 'antd';
+import { Card, List } from 'antd';
 import MealTags from './MealTags';
-import { MinusOutlined } from '@ant-design/icons';
+import { CloseOutlined, EditOutlined } from '@ant-design/icons';
 import '../UI/ListItem.css';
+import Meta from 'antd/lib/card/Meta';
 
 const MealItems = (props) => {
   const handleMeal = async (id) => {
@@ -17,25 +18,25 @@ const MealItems = (props) => {
       dataSource={props.meals}
       renderItem={(meal) => {
         return (
-          <List.Item
+          <Card
+            style={{ marginTop: 16 }}
             value={meal?.id}
             key={meal?.meal}
-            extra={
-              <Button
-                danger
-                size="small"
-                icon={<MinusOutlined />}
+            hoverable
+            actions={[
+              <CloseOutlined
+                key="delete"
                 onClick={() => props.deleteMeal(meal?.id, props.dayId)}
-              />
-            }
+              />,
+              <EditOutlined key="edit" onClick={() => handleMeal(meal?.id)} />,
+            ]}
           >
-            <List.Item.Meta
-              style={{ margin: '4px 0' }}
-              title={<a href="#meal-item">{meal?.meal}</a>}
+            <Meta
               onClick={() => handleMeal(meal?.id)}
+              title={meal?.meal}
+              description={<MealTags tags={meal?.tags} />}
             />
-            <MealTags tags={meal?.tags} />
-          </List.Item>
+          </Card>
         );
       }}
     ></List>

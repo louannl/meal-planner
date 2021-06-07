@@ -1,7 +1,6 @@
 import React from 'react';
-import { Card, List, Button, Skeleton } from 'antd';
+import { Card, List, Skeleton } from 'antd';
 import MealItems from './MealItems';
-import { PlusOutlined } from '@ant-design/icons';
 
 const PlannerDays = (props) => {
   if (props.loading) {
@@ -24,7 +23,12 @@ const PlannerDays = (props) => {
         renderItem={(day) => {
           return (
             <List.Item>
-              <Card hoverable loading={props.loading} title={day.name}>
+              <Card
+                hoverable
+                loading={props.loading}
+                title={day.name}
+                headStyle={{ backgroundColor: '#fafafa' }}
+              >
                 <MealItems
                   meals={day?.meals}
                   dayId={day?.id}
