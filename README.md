@@ -16,7 +16,6 @@
 ## To-do
 - Test errors on modal
 - Remove ingredients title on formIngredients
-- Confirm deletion before deleting meal
 - Sort out icon/logo
 - Delete tags/edit tags
 - Get/Delete ingredients already in database

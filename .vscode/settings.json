@@ -1,11 +1,13 @@
 {
     "cSpell.words": [
-        "antd"
+        "antd",
+        "hoverable"
     ],
     "cSpell.ignoreWords": [
         "days",
         "get",
         "meals",
+        "popconfirm",
         "with"
     ]
 }

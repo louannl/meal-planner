@@ -4,6 +4,7 @@ import MealTags from './MealTags';
 import { CloseOutlined, EditOutlined } from '@ant-design/icons';
 import '../UI/ListItem.css';
 import Meta from 'antd/lib/card/Meta';
+import PopConfirm from '../UI/PopConfirm';
 
 const MealItems = (props) => {
   const handleMeal = async (id) => {
@@ -24,10 +25,13 @@ const MealItems = (props) => {
             key={meal?.meal}
             hoverable
             actions={[
-              <CloseOutlined
-                key="delete"
-                onClick={() => props.deleteMeal(meal?.id, props.dayId)}
-              />,
+              <PopConfirm
+                title="Are you sure you want to delete this meal"
+                onConfirm={() => props.deleteMeal(meal?.id, props.dayId)}
+                onCancel=""
+              >
+                <CloseOutlined key="delete" />
+              </PopConfirm>,
               <EditOutlined key="edit" onClick={() => handleMeal(meal?.id)} />,
             ]}
           >
