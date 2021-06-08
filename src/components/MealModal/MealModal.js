@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Modal, Button, Form, Spin } from 'antd';
 
 import FormIngredients from './FormIngredients';
@@ -18,12 +18,6 @@ const layout = {
 };
 
 const MealModal = (props) => {
-  const [requiredMark, setRequiredMarkType] = useState('optional');
-
-  const onRequiredTypeChange = ({ requiredMarkValue }) => {
-    setRequiredMarkType(requiredMarkValue);
-  };
-
   const {
     visible,
     loading,
@@ -93,7 +87,6 @@ const MealModal = (props) => {
         };
       }),
     };
-    //FIXME: BackEnd doesn't take in non-integers
     editMeal(meal, mealId);
     toggleModal();
   };
@@ -115,8 +108,8 @@ const MealModal = (props) => {
     toggleModal();
   };
 
-  const onFinish = (values) => {
-    console.log('Received values of form:', values);
+  const onFinish = () => {
+    clearForm();
   };
 
   if (error) {
@@ -129,7 +122,7 @@ const MealModal = (props) => {
       <Modal
         title="An Error has occurred..."
         visible={visible}
-        onOk={handleOk}
+        onOk={handleCancel}
         onCancel={handleCancel}
       >
         <p>{errorMessage}</p>
@@ -194,13 +187,7 @@ const MealModal = (props) => {
           form={form}
           name="Edit_Meal_Item"
           {...layout}
-          //FIXME: DO I NEED onFinish?
           onFinish={onFinish}
-          initialValues={{
-            requiredMarkValue: requiredMark,
-          }}
-          onValuesChange={onRequiredTypeChange}
-          requiredMark={requiredMark}
         >
           <FormDays data={days} default={mealDays} />
           <FormMealName default={mealName} />

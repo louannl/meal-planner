@@ -1,3 +1,4 @@
+import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Popconfirm } from 'antd';
 
 const PopConfirm = (props) => {
@@ -8,6 +9,7 @@ const PopConfirm = (props) => {
       onCancel={props.onCancel}
       okText="Yes"
       cancelText="No"
+      icon={<QuestionCircleOutlined style={{ color: 'red' }} />}
     >
       {props.children}
     </Popconfirm>

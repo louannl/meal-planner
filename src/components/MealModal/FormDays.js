@@ -19,7 +19,7 @@ const FormDays = (props) => {
   return (
     <Form.Item
       name="dayIds"
-      label="Day"
+      label="Days"
       initialValue={defaultDays}
       rules={[{ required: true, message: 'Please select a day' }]}
     >

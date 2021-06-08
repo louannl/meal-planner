@@ -12,7 +12,6 @@ const FormMealName = (props) => {
       label="Meal Name"
       name="mealName"
       required
-      tooltip="This is a required field"
       initialValue={defaultName}
       rules={[{ required: true, message: 'Please enter a name' }]}
     >

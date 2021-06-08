@@ -20,8 +20,6 @@ const Modal = (props) => {
     setIsLoading(true);
     setError(null);
     setSelectDays(days);
-    //FIXME: GetSelectors to run after creation if new values added
-    console.log('getSelectors is running!');
     await Promise.all([
       get('/tags').then((res) => {
         setSelectTags(res.data.data);

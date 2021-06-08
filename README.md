@@ -12,13 +12,16 @@
 
 *Nice to haves*
 - Change 'No data' icon to say no meals/ingredients and to have a different icon suited to meals
+- Ingredients doesn't show a validator error for ingredients, although it does throw an error.
 
 ## To-do
 - Test errors on modal
-- Remove ingredients title on formIngredients
+- whole numbers only
+- Portal modal 
 - Sort out icon/logo
 - Delete tags/edit tags
 - Get/Delete ingredients already in database
+- Delete on Edit meal
 - Start portfolio website - add images of website to it
   
 *Not a priority*

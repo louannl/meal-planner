@@ -26,7 +26,7 @@ const MealItems = (props) => {
             hoverable
             actions={[
               <PopConfirm
-                title="Are you sure you want to delete this meal"
+                title="Are you sure you want to delete this meal item?"
                 onConfirm={() => props.deleteMeal(meal?.id, props.dayId)}
                 onCancel=""
               >

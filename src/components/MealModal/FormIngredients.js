@@ -2,7 +2,6 @@ import React from 'react';
 import { Button, Divider, Form, Input, InputNumber, Select, Space } from 'antd';
 import { PlusOutlined, MinusCircleOutlined } from '@ant-design/icons';
 
-// const { Option } = Select;
 const InputGroup = Input.Group;
 
 const FormIngredients = (props) => {
@@ -26,7 +25,11 @@ const FormIngredients = (props) => {
   return (
     <React.Fragment>
       <Divider>Ingredients</Divider>
-      <Form.List name="ingredients" initialValue={defaultIngredients}>
+      <Form.List
+        name="ingredients"
+        initialValue={defaultIngredients}
+        rules={[{ required: true, message: 'Please input an ingredient!' }]}
+      >
         {(fields, { add, remove }) => {
           return (
             <React.Fragment>
@@ -45,7 +48,10 @@ const FormIngredients = (props) => {
                         name={[name, 'name']}
                         fieldKey={[fieldKey, 'name']}
                         rules={[
-                          { required: true, message: 'Please enter a name' },
+                          {
+                            required: true,
+                            message: 'Please enter a name or delete this field',
+                          },
                         ]}
                       >
                         <Input
@@ -68,6 +74,7 @@ const FormIngredients = (props) => {
                         <InputNumber
                           placeholder="100"
                           style={{ width: '25%' }}
+                          min={1}
                         />
                       </Form.Item>
                       <Form.Item
