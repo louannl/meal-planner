@@ -34,7 +34,7 @@ const PlannerDays = (props) => {
                   dayId={day?.id}
                   toggleModal={props.toggleModal}
                   selectMeal={props.selectMeal}
-                  deleteMeal={props.deleteMeal}
+                  deleteMealOnDay={props.deleteMealOnDay}
                 />
               </Card>
             </List.Item>

@@ -25,6 +25,7 @@ const Planner = (props) => {
             toggleModal={props.toggleModal}
             mealId={props.selectedMeal}
             updateMeals={props.updateMeals}
+            deleteMeal={props.deleteMeal}
           />
           <Col xs={24} sm={24} md={16} lg={18} xl={18}>
             <PlannerDays
@@ -33,7 +34,7 @@ const Planner = (props) => {
               error={props.error}
               selectMeal={props.selectMeal}
               toggleModal={props.toggleModal}
-              deleteMeal={props.deleteMeal}
+              deleteMealOnDay={props.deleteMealOnDay}
             />
           </Col>
           <Col xs={24} sm={24} md={8} lg={6} xl={6}>

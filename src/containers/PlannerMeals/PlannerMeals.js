@@ -61,10 +61,25 @@ const PlannerMeals = () => {
     setIsLoading(false);
   };
 
-  const deleteMealHandler = (id, dayId) => {
+  const deleteMealOnDayHandler = (id, dayId) => {
     setIsLoading(true);
     setError(null);
     remove(`/meals/${id}/${dayId}`)
+      .then((res) => {
+        updateMealsWithDaysHandler();
+        getIngredientsHandler();
+        successToast('Deleted meal');
+      })
+      .catch((err) => {
+        errorToast('Failed to delete meal');
+      });
+    setIsLoading(false);
+  };
+
+  const deleteMealHandler = (id) => {
+    setIsLoading(true);
+    setError(null);
+    remove(`/meals/${id}`)
       .then((res) => {
         updateMealsWithDaysHandler();
         getIngredientsHandler();
@@ -89,6 +104,7 @@ const PlannerMeals = () => {
       selectMeal={selectMeal}
       getMealsWithDays={getMealsWithDaysHandler}
       updateMeals={updateMealsWithDaysHandler}
+      deleteMealOnDay={deleteMealOnDayHandler}
       deleteMeal={deleteMealHandler}
     />
   );

@@ -20,7 +20,6 @@
 - Whole numbers only
 - Delete tags/edit tags
 - Get/Delete ingredients already in database
-- Delete on Edit meal
 - Start portfolio website - add images of website to it
   
 *Not a priority*
@@ -32,7 +31,6 @@
 - MealModal was rendered seven times on refresh/initialisation due to the modal being rendered on each day card.
 Fixed: Replaced with a button that changes the state 'visibile' instead. 
 Additional Point: I since moved add meal to another part of the website, however the change above has still been helpful when making the modal visibile from different parts of the website, i.e. edit meal and add meal.
-
 
 
 # Getting Started with Create React App

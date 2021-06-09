@@ -30,6 +30,7 @@ const MealModal = (props) => {
     toggleModal,
     createMeal,
     editMeal,
+    deleteMeal,
     mealId,
   } = props;
 
@@ -103,6 +104,11 @@ const MealModal = (props) => {
       });
   };
 
+  const handleDelete = (id) => {
+    deleteMeal(id);
+    toggleModal();
+  };
+
   const handleCancel = () => {
     clearForm();
     toggleModal();
@@ -154,6 +160,16 @@ const MealModal = (props) => {
     ModalTitle = 'Edit Meal';
     submitBtn = (
       <React.Fragment>
+        <Button
+          form="mealForm"
+          key="delete"
+          htmlType="button"
+          onClick={() => handleDelete(mealId)}
+          type="primary"
+          danger
+        >
+          Delete Meal
+        </Button>
         <Button
           form="mealForm"
           key="submit"

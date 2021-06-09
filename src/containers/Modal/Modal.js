@@ -101,6 +101,7 @@ const Modal = (props) => {
       toggleModal={props.toggleModal}
       createMeal={createMealHandler}
       editMeal={editMealHandler}
+      deleteMeal={props.deleteMeal}
       mealId={mealId}
     />
   );
