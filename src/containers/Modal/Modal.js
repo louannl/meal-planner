@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { get, post, put } from '../../api/axios';
 import MealModal from '../../components/MealModal/MealModal';
 import { successToast, errorToast } from '../../components/UI/toast';
@@ -11,9 +11,7 @@ const Modal = (props) => {
   const [selectUnits, setSelectUnits] = useState([]);
   const [defaults, setDefaults] = useState('');
   const [editMode, setEditMode] = useState(false);
-  //FIXME: Make a portal for the modal
 
-  //IMPROVEMENT: Add Selectors for ingredients
   const { days, mealId } = props;
 
   const getSelectors = useCallback(async () => {
@@ -74,7 +72,7 @@ const Modal = (props) => {
         props.updateMeals();
       })
       .catch((err) => {
-        errorToast('Failed to create meal');
+        errorToast(`Failed to create meal: ${err.response.data.message}`);
       });
   };
 
@@ -85,7 +83,7 @@ const Modal = (props) => {
         props.updateMeals();
       })
       .catch((err) => {
-        errorToast('Failed to edit meal');
+        errorToast(`Failed to edit meal: ${err.response.data.message}`);
       });
   };
 

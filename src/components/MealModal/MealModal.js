@@ -122,6 +122,7 @@ const MealModal = (props) => {
       <Modal
         title="An Error has occurred..."
         visible={visible}
+        getContainer={() => document.getElementById('overlay-root')}
         onOk={handleCancel}
         onCancel={handleCancel}
       >
@@ -170,6 +171,7 @@ const MealModal = (props) => {
     <Modal
       title={ModalTitle}
       visible={visible}
+      getContainer={() => document.getElementById('overlay-root')}
       onOk={handleOk}
       onCancel={handleCancel}
       footer={[

@@ -9,15 +9,15 @@
 - Authentication (this will include using redux or context)
 - Add functionality to allow the starting day to be selected
 - Pop-up confirm deletion of meal and option to delete all meals or meal (even on different days)
+- Handle errors by not closing the form but showing an error if error is user made and not a server error.
 
 *Nice to haves*
 - Change 'No data' icon to say no meals/ingredients and to have a different icon suited to meals
+- Add Ingredients stored in database as an option to Modal
 - Ingredients doesn't show a validator error for ingredients, although it does throw an error.
 
 ## To-do
-- Test errors on modal
-- whole numbers only
-- Portal modal 
+- Whole numbers only
 - Sort out icon/logo
 - Delete tags/edit tags
 - Get/Delete ingredients already in database
