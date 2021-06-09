@@ -18,7 +18,6 @@
 
 ## To-do
 - Whole numbers only
-- Sort out icon/logo
 - Delete tags/edit tags
 - Get/Delete ingredients already in database
 - Delete on Edit meal
