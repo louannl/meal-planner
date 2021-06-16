@@ -51,6 +51,7 @@ Add tags to your meals, for example, you could tag meals with high protein or ju
 - The are a few improvements necessary on the backend API, e.g.
   - it only takes in whole numbers (can't add 1/2 teaspoon etc.)
 - Haven't added functionality yet to delete/create tags, so tags will exponentially grow. The functionality is available on the API.
+- If you add an invalid BaseURL, the modal will constantly load instead of rendering an error fetching data
 
 *Previous issues*
 - MealModal was rendered seven times on refresh/initialisation due to the modal being rendered on each day card.
