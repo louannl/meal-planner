@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:5000';
+const baseURL = process.env.REACT_APP_BASEURL;
 
 export const get = (url = '', options = {}) =>
   new Promise((res, rej) => {

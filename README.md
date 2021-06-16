@@ -1,37 +1,74 @@
 # Meal Planner
 
-## BUGS AND IMPROVEMENTS
-# Bugs
-- When clicking edit, ingredient items pre-filled using antd 'initialValues' automatically include 'optional'
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-## Improvements
+### Built With
+- React
+- MealPlanner-API
+- Axios
+- Ant Design
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+### Prerequisites
+To run this project you will need to install npm 
+* npm
+  ```sh
+  npm install npm@latest -g
+  ``
+Additionally, you will need the meal-planner-api, please checkout the ReadMe for this on [meal-planner-api.git](https://github.com/louannl/meal-planner-api.git)
+
+### Installation
+2. Clone the repo
+   ```sh
+   git clone https://github.com/louannl/meal-planner.git
+   ```
+3. Install NPM packages
+   ```sh
+   npm install
+   ```
+4. Copy .env.example and rename it to .env. Enter the meal-planner-API in `.env`. E.g.
+   ```env
+   REACT_APP_BASEURL=http://localhost:5000
+   ```
+
+<!-- USAGE EXAMPLES -->
+## Usage
+Meals:
+You can plan your meals by adding in days you would be having said meals, the ingredients list will then automatically aggregate same ingredients and give you their total.
+
+Tags: 
+Add tags to your meals, for example, you could tag meals with high protein or just use tags to make it easier to identify your meal types, such as lunch/snacks/dinner.
+
+<!-- ROADMAP -->
+## Issues and Roadmap
+
+## BUGS AND IMPROVEMENTS
+### Issues
+
+*Current issues*
+- The are a few improvements necessary on the backend API, e.g.
+  - it only takes in whole numbers (can't add 1/2 teaspoon etc.)
+- Haven't added functionality yet to delete/create tags, so tags will exponentially grow. The functionality is available on the API.
+
+*Previous issues*
+- MealModal was rendered seven times on refresh/initialisation due to the modal being rendered on each day card.
+Fixed: Replaced with a button that changes the state 'visibile' instead. 
+Additional Point: I since moved 'add meal' to another part of the website, however the change above has still been helpful when making the modal visibile from different parts of the website, i.e. edit meal and add meal.
+
+### Roadmap
 *Non-core Functionality*
 - Authentication (this will include using redux or context)
-- Add functionality to allow the starting day to be selected
-- Pop-up confirm deletion of meal and option to delete all meals or meal (even on different days)
+- Add functionality to allow the starting day to be selected (change order of days)
 - Handle errors by not closing the form but showing an error if error is user made and not a server error.
+- Colour coded tags
 
 *Nice to haves*
 - Change 'No data' icon to say no meals/ingredients and to have a different icon suited to meals
-- Add Ingredients stored in database as an option to Modal
+- Add Ingredients stored in database as selection options to Modal
 - Ingredients doesn't show a validator error for ingredients, although it does throw an error.
-
-## To-do
-- Whole numbers only
-- Delete tags/edit tags
-- Get/Delete ingredients already in database
-- Start portfolio website - add images of website to it
-  
-*Not a priority*
-- Change Nav Bar colour
-- Top of modal to be different colour (can't seem to do without amending antd)
-
-
-## Notable issues when creating the planner
-- MealModal was rendered seven times on refresh/initialisation due to the modal being rendered on each day card.
-Fixed: Replaced with a button that changes the state 'visibile' instead. 
-Additional Point: I since moved add meal to another part of the website, however the change above has still been helpful when making the modal visibile from different parts of the website, i.e. edit meal and add meal.
-
 
 # Getting Started with Create React App
 
