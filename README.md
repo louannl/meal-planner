@@ -45,7 +45,6 @@ Add tags to your meals, for example, you could tag meals with high protein or ju
 <!-- ROADMAP -->
 ## Issues and Roadmap
 
-## BUGS AND IMPROVEMENTS
 ### Issues
 
 *Current issues*
