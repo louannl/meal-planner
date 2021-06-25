@@ -1,5 +1,7 @@
 # Meal Planner
 
+
+
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
@@ -36,6 +38,14 @@ Additionally, you will need the meal-planner-api, please checkout the ReadMe for
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+Creating a meal in the planner:
+https://user-images.githubusercontent.com/63197150/123423141-13a14680-d5b7-11eb-8124-6b0f70cd4c6a.mp4
+
+
+Editing and deleting meals in the planner
+https://user-images.githubusercontent.com/63197150/123423244-34699c00-d5b7-11eb-81aa-fc5932d3c263.mp4
+
+
 Meals:
 You can plan your meals by adding in days you would be having said meals, the ingredients list will then automatically aggregate same ingredients and give you their total.
 
