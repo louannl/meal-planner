@@ -29,6 +29,7 @@ const Planner = (props) => {
           />
           <Col xs={24} sm={24} md={16} lg={18} xl={18}>
             <PlannerDays
+              days={props.days}
               loading={props.loading}
               meals={props.meals}
               error={props.error}

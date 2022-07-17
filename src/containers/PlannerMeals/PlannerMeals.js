@@ -25,6 +25,19 @@ const PlannerMeals = () => {
     getIngredientsHandler();
   }, [getIngredientsHandler]);
 
+  const getDaysHandler = useCallback(async () => {
+    setIsLoading(true);
+    setError(null);
+    await get('/days').then((res) => {
+      setDays(res.data.data);
+    });
+    setIsLoading(false);
+  }, []);
+
+  useEffect(() => {
+    getDaysHandler();
+  }, [getDaysHandler]);
+
   const toggleModalHandler = () => {
     setVisible((prevState) => !prevState);
   };
@@ -38,11 +51,6 @@ const PlannerMeals = () => {
     setError(null);
     await get('/meals/meals-with-days').then((res) => {
       setMeals(res.data.data);
-      setDays(
-        res.data.data.map((day) => {
-          return { name: day.name, day_id: day.id };
-        })
-      );
     });
     setIsLoading(false);
   }, []);
